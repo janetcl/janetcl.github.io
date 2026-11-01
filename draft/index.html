@@ -15,7 +15,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
+<script>
+  try { var t = localStorage.getItem('jl-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 <script>
   // Loader: only appears if the page is still loading after 400ms (slow connections).
   (function () {
@@ -39,13 +42,13 @@
 <div id="loader" class="loader" aria-hidden="true">
 <div class="jl loader__inner">
 <svg class="loader__scene" viewBox="0 0 520 320" aria-hidden="true" style="overflow: visible">
-<line x1="24" y1="291" x2="500" y2="291" stroke="#2442C9" stroke-width="4" stroke-linecap="round"></line>
-<line x1="464" y1="96" x2="464" y2="289" stroke="#2442C9" stroke-width="8" stroke-linecap="round"></line>
-<line x1="452" y1="104" x2="464" y2="104" stroke="#2442C9" stroke-width="6" stroke-linecap="round"></line>
-<rect x="444" y="52" width="9" height="100" rx="2" fill="#2442C9"></rect>
-<line x1="438" y1="130" x2="446" y2="130" stroke="#2442C9" stroke-width="4" stroke-linecap="round"></line>
+<line x1="24" y1="291" x2="500" y2="291" stroke="currentColor" stroke-width="4" stroke-linecap="round"></line>
+<line x1="464" y1="96" x2="464" y2="289" stroke="currentColor" stroke-width="8" stroke-linecap="round"></line>
+<line x1="452" y1="104" x2="464" y2="104" stroke="currentColor" stroke-width="6" stroke-linecap="round"></line>
+<rect x="444" y="52" width="9" height="100" rx="2" fill="currentColor"></rect>
+<line x1="438" y1="130" x2="446" y2="130" stroke="currentColor" stroke-width="4" stroke-linecap="round"></line>
 
-<ellipse class="c-shadow" cx="150" cy="292" rx="30" ry="5" fill="#2442C9"></ellipse>
+<ellipse class="c-shadow" cx="150" cy="292" rx="30" ry="5" fill="currentColor"></ellipse>
 
 <g transform="translate(150 291)">
 <g class="c-air">
@@ -146,16 +149,16 @@
 </g>
 
 <g class="h-net">
-<path d="M384 132L396 168M396 133L402 168M410 134V168M424 133L418 168M436 132L424 168M389 148H431M394 160H426" stroke="#2442C9" stroke-width="2" stroke-linecap="round" fill="none"></path>
+<path d="M384 132L396 168M396 133L402 168M410 134V168M424 133L418 168M436 132L424 168M389 148H431M394 160H426" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"></path>
 </g>
 <ellipse cx="410" cy="130" rx="28" ry="6" fill="none" stroke="#F7836E" stroke-width="4.5"></ellipse>
 
-<text class="h-swish" x="330" y="96" fill="#2442C9" style="font-family: 'Reenie Beanie', cursive; font-size: 30px; font-weight: 700">swish!</text>
+<text class="h-swish" x="330" y="96" fill="currentColor" style="font-family: 'Reenie Beanie', cursive; font-size: 30px; font-weight: 700">swish!</text>
 </svg>
 <div style="display: grid; place-items: center; min-height: 48px">
-<p class="jl-cc" style="margin: 0; padding: 6px 14px; background: transparent; color: #2442C9; font-family: 'Reenie Beanie', cursive; font-size: 36px">loading…</p>
-<p class="jl-cc" lang="es" style="margin: 0; padding: 6px 14px; background: transparent; color: #2442C9; font-family: 'Reenie Beanie', cursive; font-size: 36px; animation-delay: -4s">cargando…</p>
-<p class="jl-cc" lang="zh" style="margin: 0; padding: 6px 14px; background: transparent; color: #2442C9; font-family: 'Reenie Beanie', cursive; font-size: 36px; animation-delay: -2s">加载中…</p>
+<p class="jl-cc" style="margin: 0; padding: 6px 14px; background: transparent; color: currentColor; font-family: 'Reenie Beanie', cursive; font-size: 36px">loading…</p>
+<p class="jl-cc" lang="es" style="margin: 0; padding: 6px 14px; background: transparent; color: currentColor; font-family: 'Reenie Beanie', cursive; font-size: 36px; animation-delay: -4s">cargando…</p>
+<p class="jl-cc" lang="zh" style="margin: 0; padding: 6px 14px; background: transparent; color: currentColor; font-family: 'Reenie Beanie', cursive; font-size: 36px; animation-delay: -2s">加载中…</p>
 </div>
 </div>
 </div>
@@ -169,6 +172,12 @@
     <a href="#side">Side projects</a>
     <a href="#about">About</a>
     <a href="/files/Janet_Lee_Resume.pdf">Resume</a>
+    <div class="themes" role="group" aria-label="Color theme">
+      <button class="swatch" type="button" data-theme-pick="" aria-label="Blue and peach" aria-pressed="true" style="--a:#2442C9;--b:#FFC2A3"><span></span></button>
+      <button class="swatch" type="button" data-theme-pick="teal" aria-label="Teal and salmon" aria-pressed="false" style="--a:#0F7479;--b:#FFB3A3"><span></span></button>
+      <button class="swatch" type="button" data-theme-pick="magenta" aria-label="Magenta and lime" aria-pressed="false" style="--a:#D1127A;--b:#C8F53B"><span></span></button>
+      <button class="swatch" type="button" data-theme-pick="neon" aria-label="Orange and neon yellow" aria-pressed="false" style="--a:#F25C05;--b:#F3FF3D"><span></span></button>
+    </div>
   </nav>
 </header>
 
@@ -331,6 +340,6 @@
 
 </div>
 
-<script src="site.js" defer></script>
+<script src="site.js?v=4" defer></script>
 </body>
 </html>

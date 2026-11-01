@@ -98,3 +98,24 @@
   }
   run();
 })();
+
+// Colour themes: pick in the top bar, remembered for next time.
+(function () {
+  var root = document.documentElement;
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-theme-pick]'));
+  var meta = document.querySelector('meta[name="theme-color"]');
+  function sync() {
+    var cur = root.dataset.theme || '';
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-pick') === cur)); });
+    if (meta) meta.setAttribute('content', getComputedStyle(root).getPropertyValue('--paper').trim() || '#FAFAF7');
+  }
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-theme-pick');
+      if (t) root.dataset.theme = t; else delete root.dataset.theme;
+      try { if (t) localStorage.setItem('jl-theme', t); else localStorage.removeItem('jl-theme'); } catch (e) {}
+      sync();
+    });
+  });
+  sync();
+})();

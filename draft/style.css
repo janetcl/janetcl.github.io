@@ -7,9 +7,11 @@
   --pen: #2442C9;
   --pen-dark: #16298A;
   --peach: #FFC2A3;
-  --tape: rgba(255, 194, 163, 0.75);
+  --tape: color-mix(in srgb, var(--peach) 75%, transparent);
   --wash: #EEF0FA;
   --white: #FFFFFF;
+  --on-pen: #FFFFFF;
+  --link: var(--pen);
 
   --sans: 'Instrument Sans', system-ui, sans-serif;
   --hand: 'Reenie Beanie', cursive;
@@ -41,7 +43,7 @@ img { height: auto; }
 
 h1, h2, h3, p, figure, ul { margin: 0; }
 
-a { color: var(--pen); text-underline-offset: 4px; text-decoration-thickness: 2px; }
+a { color: var(--link); text-underline-offset: 4px; text-decoration-thickness: 2px; }
 a:hover { color: var(--pen-dark); }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--pen); outline-offset: 3px; }
 
@@ -64,7 +66,7 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 .wordmark { font-size: 40px; line-height: 1; text-decoration: none; }
 .nav { display: flex; flex-wrap: wrap; gap: 8px 28px; font-weight: 600; font-size: 17px; }
 .nav a { color: var(--ink); text-decoration: none; padding-block: 8px; }
-.nav a:hover { color: var(--pen); }
+.nav a:hover { color: var(--link); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -91,10 +93,10 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 
 .button {
   display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px;
-  background: var(--pen); color: var(--white); text-decoration: none; font-weight: 700;
+  background: var(--pen); color: var(--on-pen); text-decoration: none; font-weight: 700;
   transition: background-color 160ms ease-out, transform 160ms ease-out;
 }
-.button:hover { background: var(--pen-dark); color: var(--white); }
+.button:hover { background: var(--pen-dark); color: var(--on-pen); }
 .button:active { transform: translateY(1px); }
 .text-link { display: inline-flex; align-items: center; min-height: 52px; padding: 0 8px; font-weight: 700; }
 
@@ -231,15 +233,15 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 .loves span { font-size: 34px; line-height: 1; }
 
 /* ---------- Footer ---------- */
-.site-footer { background: var(--pen); color: var(--white); }
+.site-footer { background: var(--pen); color: var(--on-pen); }
 .site-footer__inner {
   padding-top: clamp(80px, 10vw, 150px); padding-bottom: 40px;
   display: flex; flex-direction: column; gap: clamp(40px, 5vw, 72px);
 }
-.site-footer__thanks { color: var(--white); font-size: clamp(64px, 9vw, 140px); line-height: 0.85; }
-.site-footer a { color: var(--white); }
-.site-footer a:hover { color: var(--peach); }
-.site-footer a:focus-visible { outline-color: var(--white); }
+.site-footer__thanks { color: var(--on-pen); font-size: clamp(64px, 9vw, 140px); line-height: 0.85; }
+.site-footer a { color: var(--on-pen); }
+.site-footer a:hover { opacity: .75; }
+.site-footer a:focus-visible { outline-color: var(--on-pen); }
 .site-footer__email {
   font-size: clamp(24px, 3.4vw, 48px); font-weight: 700; letter-spacing: -0.02em;
   overflow-wrap: anywhere;
@@ -287,6 +289,7 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 @media (prefers-reduced-motion: reduce) { .loader { display: none !important; } }
 
 /* ---------- Loader: mini-Janet shoots hoops (one 3s loop on first visit) ---------- */
+.loader{color:var(--pen)}
 .loader__inner{display:flex;flex-direction:column;align-items:center;gap:12px;width:min(728px,92vw)}
 .loader__scene{width:100%;height:auto;overflow:visible}
 .jl svg *{transform-box:view-box}
@@ -416,3 +419,35 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 .jl *{animation:none!important}
 .jl-cc+.jl-cc,.h-swish,.c-grin{opacity:0}
 }
+
+/* ---------- Colour themes (picked in the top bar, remembered per visitor) ---------- */
+:root[data-theme="teal"] {
+  --paper: #F3FAF9; --ink: #13201F; --ink-soft: #3F4F4D;
+  --pen: #0F7479; --pen-dark: #0A5458; --peach: #FFB3A3; --wash: #FFEDE8;
+  --on-pen: #FFFFFF; --link: #0F7479;
+}
+:root[data-theme="magenta"] {
+  --paper: #FFF7FC; --ink: #1E0F1A; --ink-soft: #5A4552;
+  --pen: #D1127A; --pen-dark: #A00C5C; --peach: #C8F53B; --wash: #F1FBD6;
+  --on-pen: #FFFFFF; --link: #B30F69;
+}
+:root[data-theme="neon"] {
+  --paper: #FFFEF5; --ink: #1F1A10; --ink-soft: #554C3A;
+  --pen: #F25C05; --pen-dark: #C24700; --peach: #F3FF3D; --wash: #FFF6BF;
+  --on-pen: #1F1A10; --link: #B34400;
+}
+body { transition: background-color 300ms ease-out, color 300ms ease-out; }
+
+.themes { display: flex; align-items: center; gap: 2px; margin-left: 8px; }
+.swatch {
+  width: 40px; height: 40px; padding: 8px; border: 0; background: none; cursor: pointer;
+  border-radius: 50%; display: grid; place-items: center;
+}
+.swatch span {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--a) 50%, var(--b) 50%);
+  transition: transform 160ms ease-out;
+}
+.swatch:hover span { transform: scale(1.12); }
+.swatch[aria-pressed="true"] span { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink); }
+.swatch:focus-visible { outline: 3px solid var(--pen); outline-offset: 0; }
