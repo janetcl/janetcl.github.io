@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Janet Lee — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;display=swap" rel="stylesheet">
+<style>
+@page { size: letter; margin: 0; }
+:root {
+  --ink: #1B1B1B;
+  --muted: #55554F;
+  --pen: #2442C9;
+  --peach: #FFC2A3;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #FFFFFF; }
+body {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  color: var(--ink);
+  font-size: 9.2pt;
+  line-height: 1.37;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.page { width: 8.5in; min-height: 11in; padding: 0.42in 0.52in 0.36in; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.name { margin: 0; font-size: 28pt; line-height: 1; font-weight: 700; letter-spacing: -0.015em; }
+.hl { background: linear-gradient(transparent 58%, var(--peach) 58%, var(--peach) 92%, transparent 92%); padding: 0 3px; }
+.role { margin-top: 6px; font-size: 11pt; font-weight: 500; color: var(--muted); }
+.contact { text-align: right; line-height: 1.5; }
+.contact a { color: var(--pen); font-weight: 600; }
+
+section { margin-top: 12px; }
+h2 { margin: 0 0 5px; font-size: 11.5pt; font-weight: 700; color: var(--pen); letter-spacing: -0.005em; }
+h2 span { background: linear-gradient(transparent 62%, var(--peach) 62%, var(--peach) 94%, transparent 94%); padding: 0 2px; }
+
+.company { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; font-size: 10.5pt; }
+.company b { font-weight: 700; }
+.item + .item { margin-top: 8px; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.row .t b { font-weight: 700; }
+.row .t span { color: var(--muted); }
+.when { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+ul { margin: 3px 0 0; padding-left: 14px; }
+li { margin: 0 0 1.5px; padding-left: 2px; }
+li::marker { color: var(--pen); }
+
+.grid2 { display: grid; grid-template-columns: 1.65in 1fr; gap: 1px 14px; }
+.grid2 dt { font-weight: 700; }
+.grid2 dd { margin: 0; }
+.soft { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="head">
+<div>
+<h1 class="name"><span class="hl">Janet Lee</span></h1>
+<p class="role">Staff Software Engineer</p>
+</div>
+<div class="contact">
+<a href="https://janetlee.me">janetlee.me</a><br>
+<a href="mailto:janetlee2016@gmail.com">janetlee2016@gmail.com</a><br>
++1-408-836-5245
+</div>
+</header>
+
+<section>
+<h2><span>Experience</span></h2>
+<p class="company"><span><b>Meta</b> · Staff Software Engineer · New York, NY</span><span class="when">Sep 2020 – Present</span></p>
+
+<div class="item">
+<div class="row"><p class="t"><b>Meta Superintelligence Labs</b> <span>· Voice &amp; Embodiment</span></p><p class="when">Dec 2024 – Present</p></div>
+<ul>
+<li>Android lead for Muse voice, real-time calls with live AI avatars over WebRTC, from the Connect 2026 demo through launch.</li>
+<li>Built 0-to-1 AI voice and avatar calling for Facebook, Instagram, and Messenger on Android and iOS, syncing live audio, video, and captions.</li>
+<li>Set technical direction for rollout, experimentation, and call-quality metrics shared across eng, product, and data science.</li>
+<li>Turned prototypes into company-wide tests within days, including a one-week Android port of avatar calling.</li>
+</ul>
+</div>
+
+<div class="item">
+<div class="row"><p class="t"><b>Facebook Video</b> <span>· Reels Consumption Growth</span></p><p class="when">Dec 2021 – Nov 2024</p></div>
+<ul>
+<li>Android tech lead; my launches drove 50–100%+ of team goals.</li>
+<li>Shipped Reels autoplay in Feed after fixing crash, memory, and scroll regressions: +3.8% watch time, +25M daily viewers.</li>
+<li>Delivered Reels in the Watch tab on Android from concept to public test in seven weeks; the launch grew Reels watch time 2.3%.</li>
+<li>Beat the H2 2024 goal by 93% after staffing fell by two-thirds.</li>
+</ul>
+</div>
+
+<div class="item">
+<div class="row"><p class="t"><b>Reality Labs</b> <span>· Facebook App on Wearables</span></p><p class="when">Sep 2020 – Nov 2021</p></div>
+<ul>
+<li>Owned Stories sharing on unreleased wearable hardware across five partner teams on fixed deadlines; rated second best in UX validation.</li>
+<li>Built the first end-to-end and UI tests, raising coverage from 0% to 80%.</li>
+<li>Stepped up as tech lead and PM when the team was understaffed.</li>
+</ul>
+</div>
+
+<div class="item" style="margin-top: 13px">
+<div class="row"><p class="t"><b>Facebook</b> <span>· Software Engineering Intern · Menlo Park, CA</span></p><p class="when">Summer 2019</p></div>
+<ul>
+<li>Determined optimal budgets and durations for lightweight ads to hit business outcomes (Python, SQL).</li>
+<li>Surfaced ad recommendations to millions of advertisers (PHP, React.js).</li>
+<li>Partnered with design, content strategy, and data engineering, and refactored the ads codebase.</li>
+</ul>
+</div>
+
+<div class="item">
+<div class="row"><p class="t"><b>Central de Ofertas</b> <span>· Full Stack Software Development Intern · Buenos Aires, Argentina</span></p><p class="when">Summer 2018</p></div>
+<ul>
+<li>Built a full-stack price comparison web app for staff and sellers (Node.js, MongoDB, Material Design).</li>
+<li>Automated MySQL data loading with JavaScript scripts.</li>
+</ul>
+</div>
+</section>
+
+<section>
+<h2><span>Projects</span></h2>
+<div class="item">
+<div class="row"><p class="t"><b>Church App</b> <span>· iOS Developer + Project Lead</span></p><p class="when">2023</p></div>
+<ul>
+<li>Built an iOS app for my church in Swift, from design through launch.</li>
+<li>Led non-engineer volunteers through scoping, content, and testing.</li>
+</ul>
+</div>
+</section>
+
+<section>
+<h2><span>Education</span></h2>
+<div class="item">
+<div class="row"><p class="t"><b>Princeton University</b> <span>· A.B. Computer Science · GPA 3.64</span></p><p class="when">Spring 2020</p></div>
+<p style="margin-top: 3px">Certificates in Finance and Spanish. Projects: Dance Studio (3D choreography tool), TigerMeals (founder).</p>
+</div>
+</section>
+
+<section>
+<h2><span>Skills</span></h2>
+<dl class="grid2" style="margin: 0">
+<dt>Programming</dt><dd>Kotlin, Java (6+ yrs) · Swift, Objective-C (1+ yr) · Hack, Python, SQL</dd>
+<dt>Platforms &amp; tools</dt><dd>Android SDK, Jetpack Compose, iOS, WebRTC, GraphQL, React, Git, A/B testing, AI agents, Graphic Design</dd>
+<dt>Languages</dt><dd>English <span class="soft">(native)</span>, Spanish <span class="soft">(fluent)</span>, Mandarin <span class="soft">(intermediate)</span></dd>
+</dl>
+</section>
+
+<section>
+<h2><span>Leadership</span></h2>
+<dl class="grid2" style="margin: 0">
+<dt>Christians@MetaNY</dt><dd>NY Area Lead <span class="soft">· leads weekly Bible studies and monthly lunches</span></dd>
+<dt>Mentor + Intern Manager</dt><dd>to 15 engineers and interns</dd>
+<dt>Alabaster Group (Church)</dt><dd>Tech Lead, AV Team</dd>
+<dt>Interests</dt><dd class="soft">basketball, boogie boarding, cinema, coffee, travel, Asian cuisine</dd>
+</dl>
+</section>
+
+</div>
+</body>
+</html>

@@ -154,13 +154,45 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 .side__intro { margin: 18px 0 clamp(56px, 7vw, 96px); max-width: 32em; font-size: clamp(20px, 1.8vw, 24px); }
 
 .taped { position: relative; }
-.taped img {
-  width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+.taped img, .taped video, .taped .pdemo {
+  display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
   background: var(--white); padding: 12px;
   box-shadow: var(--lift);
 }
-.taped--passage img { object-position: top left; transform: rotate(-1deg); }
-.taped--site img { transform: rotate(1.2deg); }
+.taped--passage .pdemo { display: flex; flex-direction: column; transform: rotate(-1deg); }
+.taped--site video { transform: rotate(1.2deg); }
+
+/* Passage live demo: a small re-creation of the app's screen, lines arriving in real time */
+.pdemo { display: flex; flex-direction: column; }
+.pdemo__bar, .pdemo__cols { background: #15161B; color: #F2F0EA; }
+.pdemo__bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px 4px; font: 600 13px/1 'Instrument Sans', sans-serif; }
+.pdemo__dot { width: 8px; height: 8px; border-radius: 50%; background: #4FB286; }
+.pdemo__status { margin-left: auto; font-weight: 500; color: #A9A79F; }
+.pdemo.is-translating .pdemo__dot { background: #F7836E; }
+.pdemo__cols { flex: 1 1 0; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 10px 16px 14px; }
+.pdemo__col { display: flex; flex-direction: column; min-height: 0; }
+.pdemo__panel {
+  flex: 1 1 0; min-height: 0; overflow: hidden; border-radius: 8px; background: #000;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 14px;
+  font-family: Lora, Georgia, 'Songti SC', serif; font-size: clamp(12px, 1.05vw, 16px); line-height: 1.3;
+}
+.pdemo__col:nth-child(2) .pdemo__panel { box-shadow: inset 0 0 0 1.5px #F7836E; }
+.pdemo__panel p { margin: 0; color: rgba(242, 240, 234, 0.5); transition: opacity 400ms ease-out, transform 400ms ease-out, color 400ms ease-out; }
+.pdemo__panel p:last-child, .pdemo__panel p.is-current { color: #FFFFFF; font-weight: 600; }
+.pdemo__label { margin: 8px 0 0; font: 600 12px/1 'Instrument Sans', sans-serif; color: #D8D6CE; }
+.pdemo.is-live .pdemo__panel p { display: none; }
+.pdemo.is-live .pdemo__panel p.is-shown { display: block; }
+.pdemo.is-live .pdemo__panel p:last-child { color: rgba(242, 240, 234, 0.5); font-weight: 400; }
+.pdemo.is-live .pdemo__panel p.is-current { color: #FFFFFF; font-weight: 600; }
+.pdemo__panel p.is-entering { opacity: 0; transform: translateY(6px); }
+.pdemo .w { opacity: 0; transition: opacity 160ms ease-out; }
+.pdemo .w.is-on { opacity: 1; }
+.pdemo.is-fading .pdemo__panel p { opacity: 0; }
+@media (max-width: 640px) {
+  .taped .pdemo { aspect-ratio: 4 / 5; }
+  .pdemo__cols { grid-template-columns: 1fr; }
+  .pdemo__panel { font-size: 14px; }
+}
 .tape--a { top: -12px; left: 8%; width: 110px; height: 32px; transform: rotate(-6deg); }
 .tape--b { top: -10px; right: 8%; width: 110px; height: 32px; transform: rotate(5deg); }
 .tape--c { top: -12px; left: 44%; width: 110px; height: 32px; transform: rotate(-3deg); }
@@ -195,7 +227,7 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px 24px;
   color: var(--pen);
 }
-.loves li { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 150px; }
+.loves li { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 150px; text-align: center; }
 .loves span { font-size: 34px; line-height: 1; }
 
 /* ---------- Footer ---------- */

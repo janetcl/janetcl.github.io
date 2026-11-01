@@ -246,7 +246,26 @@
 
     <article class="passage">
       <figure class="taped taped--passage">
-        <img src="img/passage-console.jpg" width="1800" height="1125" loading="lazy" alt="Passage console showing a sermon line in English, Spanish and Chinese">
+        <div class="pdemo" data-ui role="img" aria-label="Passage demo: each sermon line appears in English, then in Spanish and Chinese a moment later">
+          <div class="pdemo__bar" aria-hidden="true"><span class="pdemo__dot"></span><span class="pdemo__name">Passage</span><span class="pdemo__status">listening</span></div>
+          <div class="pdemo__cols" aria-hidden="true">
+            <div class="pdemo__col"><div class="pdemo__panel" lang="en">
+              <p>Turn with me to the book of Romans, chapter eight.</p>
+              <p>There is therefore now no condemnation for those who are in Christ Jesus.</p>
+              <p>And the people said amen.</p>
+            </div><p class="pdemo__label">Source</p></div>
+            <div class="pdemo__col"><div class="pdemo__panel" lang="es">
+              <p>Vuelve conmigo al libro de Romanos, capítulo ocho.</p>
+              <p>Por tanto, ahora no hay condenación para los que están en Cristo Jesús.</p>
+              <p>Y el pueblo dijo amén.</p>
+            </div><p class="pdemo__label">Spanish</p></div>
+            <div class="pdemo__col"><div class="pdemo__panel" lang="zh">
+              <p>与我一起翻到罗马书第八章。</p>
+              <p>如今那些在基督耶稣里的就不定罪了。</p>
+              <p>众人说，阿门。</p>
+            </div><p class="pdemo__label">Chinese</p></div>
+          </div>
+        </div>
         <span class="tape tape--a" aria-hidden="true"></span>
         <span class="tape tape--b" aria-hidden="true"></span>
       </figure>
@@ -260,7 +279,9 @@
     <div class="side__pair">
       <article class="side__site">
         <figure class="taped taped--site">
-          <img src="img/alabaster.jpg" width="1440" height="900" loading="lazy" alt="The alabaster.org home page">
+          <video class="site-video" muted loop playsinline preload="metadata" poster="img/alabaster.jpg" width="1200" height="750" aria-label="Scrolling through the alabaster.org home page">
+            <source src="img/alabaster-scroll.mp4" type="video/mp4">
+          </video>
           <span class="tape tape--c" aria-hidden="true"></span>
         </figure>
         <h3 class="item-title">alabaster.org</h3>
@@ -285,10 +306,9 @@
   </div>
 
   <ul class="loves" aria-label="Things I love">
-    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M34 22l8 74h26l8-74z"/><path d="M30 22h50"/><path d="M58 22l8-16"/><circle cx="48" cy="84" r="4"/><circle cx="60" cy="86" r="4"/><circle cx="54" cy="76" r="4"/><path d="M37 44h36"/></svg><span class="hand">boba</span></li>
-    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 44h52l-6 46H30z"/><path d="M76 52c14 0 14 22 0 22"/><path d="M40 34c-4-6 4-10 0-18M56 34c-4-6 4-10 0-18"/></svg><span class="hand">coffee</span></li>
     <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="55" cy="56" r="36"/><path d="M19 56h72M55 20v72"/><path d="M30 30c12 12 12 40 0 52M80 30c-12 12-12 40 0 52"/></svg><span class="hand">basketball</span></li>
-    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M42 16h26"/><path d="M44 16c0 10-20 20-20 46 0 20 14 32 31 32s31-12 31-32c0-26-20-36-20-46"/><path d="M30 56c16 6 34 6 50 0"/></svg><span class="hand">ceramics</span></li>
+    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="16" y="28" width="78" height="28" rx="14" transform="rotate(-20 55 42)"></rect><path d="M34 50l40-14"></path><path d="M24 62c-5 6-9 9-13 10"></path><path d="M6 86c9-7 18-7 27 0s18 7 27 0 18-7 27 0 14-6 17-4"></path><path d="M64 76c8-11 27-13 35-3c5 7 0 15-7 13"></path></svg><span class="hand">boogie<br>boarding</span></li>
+    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 44h52l-6 46H30z"/><path d="M76 52c14 0 14 22 0 22"/><path d="M40 34c-4-6 4-10 0-18M56 34c-4-6 4-10 0-18"/></svg><span class="hand">coffee</span></li>
     <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 40h78v50H16z"/><path d="M16 40l10-18 16 4-10 18M42 26l16 4-10 18M58 30l16 4-10 18M74 34l20 6"/><path d="M48 56v20l16-10z"/></svg><span class="hand">cinema</span></li>
     <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 66l26-6 30-30c6-6 14-6 16 0 2 4-2 10-8 14L50 72l-4 22-8 2-2-20-18 2z"/><path d="M58 48L30 36l-8 6 22 14"/></svg><span class="hand">travel</span></li>
   </ul>

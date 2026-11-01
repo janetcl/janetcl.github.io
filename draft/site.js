@@ -24,3 +24,77 @@
   if (loader) loader.addEventListener('click', function () { finished = false; window.__jlLoaderShownAt = 0; finish(); });
   window.addEventListener('keydown', function () { window.__jlLoaderShownAt = 0; finish(); }, { once: true });
 })();
+
+// Project media: Passage lines arrive in real time; the alabaster.org clip plays while on screen.
+(function () {
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (reduce) return;
+
+  function onScreen(el, cb) {
+    if (!('IntersectionObserver' in window)) { cb(true); return; }
+    new IntersectionObserver(function (entries) { cb(entries[0].isIntersecting); }, { threshold: 0.25 }).observe(el);
+  }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  var video = document.querySelector('.site-video');
+  if (video) {
+    onScreen(video, function (visible) {
+      if (visible) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+      else video.pause();
+    });
+  }
+
+  var demo = document.querySelector('.pdemo');
+  if (!demo || !window.Promise) return;
+  var panels = Array.prototype.slice.call(demo.querySelectorAll('.pdemo__panel'));
+  var lines = panels.map(function (panel) { return Array.prototype.slice.call(panel.querySelectorAll('p')); });
+  var status = demo.querySelector('.pdemo__status');
+  var visible = false;
+
+  lines[0].forEach(function (p) {
+    p.innerHTML = p.textContent.split(' ').map(function (w) { return '<span class="w">' + w + '</span>'; }).join(' ');
+  });
+  demo.classList.add('is-live');
+  onScreen(demo, function (v) { visible = v; });
+
+  function whileHidden() {
+    return visible ? Promise.resolve() : wait(300).then(whileHidden);
+  }
+  function show(col, k) {
+    lines[col].forEach(function (p) { p.classList.remove('is-current'); });
+    var p = lines[col][k];
+    p.classList.add('is-shown', 'is-current', 'is-entering');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { p.classList.remove('is-entering'); }); });
+    return p;
+  }
+
+  async function run() {
+    for (;;) {
+      demo.classList.remove('is-fading');
+      lines.forEach(function (col) { col.forEach(function (p) { p.classList.remove('is-shown', 'is-current'); }); });
+      demo.querySelectorAll('.w').forEach(function (w) { w.classList.remove('is-on'); });
+      for (var k = 0; k < 3; k++) {
+        await whileHidden();
+        status.textContent = 'listening';
+        var src = show(0, k);
+        var words = src.querySelectorAll('.w');
+        for (var i = 0; i < words.length; i++) { words[i].classList.add('is-on'); await wait(120); }
+        await wait(300);
+        demo.classList.add('is-translating');
+        status.textContent = 'translating…';
+        await wait(500);
+        show(1, k);
+        await wait(140);
+        show(2, k);
+        demo.classList.remove('is-translating');
+        status.textContent = 'listening';
+        await wait(1500);
+      }
+      await wait(1600);
+      demo.classList.add('is-fading');
+      await wait(500);
+    }
+  }
+  run();
+})();
