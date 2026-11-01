@@ -511,3 +511,17 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .paths figcaption { margin-top: 6px; font-size: 24px; line-height: 1.05; }
 .device--dance { margin-top: 0; }
 .laptop__screen > picture, .laptop__screen > picture img { display: block; width: 100%; height: auto; border-radius: 3px; }
+
+/* ---------- Side projects: one consistent row per project ---------- */
+.projects { display: flex; flex-direction: column; gap: clamp(96px, 10vw, 150px); }
+.proj { display: flex; flex-wrap: wrap; align-items: center; gap: 40px clamp(40px, 5vw, 80px); }
+.proj--flip { flex-direction: row-reverse; }
+.proj__media { flex: 3 1 540px; min-width: 0; }
+.proj__media--phone { display: flex; justify-content: center; }
+.proj__media--phone .device--phone { margin-bottom: 0; }
+.proj__text { flex: 2 1 320px; min-width: 0; }
+.proj__text .meta { margin-top: 6px; }
+.proj__text > p:not(.meta) { margin-top: 12px; }
+.proj .device--passage, .proj .device--site { margin-top: 0; }
+.proj .device--passage:has(.callout) { margin-top: 64px; }
+@media (max-width: 640px) { .laptop__screen > .pdemo { aspect-ratio: 4 / 5; } }

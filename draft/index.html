@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=17">
+<link rel="stylesheet" href="style.css?v=19">
 <script>
   try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
@@ -172,7 +172,6 @@
   <nav class="nav" aria-label="Main">
     <a href="#work">Work</a>
     <a href="#side">Side projects</a>
-    <a href="#school">Princeton</a>
     <a href="#about">About</a>
     <a href="/files/Janet_Lee_Resume.pdf?v=5">Resume</a>
   </nav>
@@ -258,11 +257,12 @@
 
 <section id="side" class="side">
   <div class="wrap side__inner">
-    <h2 class="section-title">Made for my church</h2>
-    <p class="side__intro">I serve on the AV team at Alabaster Group, a church in New York and Boston. A few things I've made for it:</p>
-
-    <article class="passage">
-      <figure class="device device--passage">
+    <h2 class="section-title">Side projects</h2>
+    <p class="side__intro">Things I've made outside work: three for my church, Alabaster Group in New York and Boston, and one for the dance teams I was on in college.</p>
+    <div class="projects">
+      <article class="proj">
+        <div class="proj__media">
+        <figure class="device device--passage">
         <p class="callout hand" aria-hidden="true"><svg viewBox="0 0 60 50" width="60" height="50" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M56 8C34 8 14 20 10 42"></path><path d="M3 32l7 11 9-8"></path></svg>the outlined one goes up on the big screen</p>
         <div class="laptop">
           <div class="laptop__screen">
@@ -290,16 +290,16 @@
           <div class="laptop__base" aria-hidden="true"></div>
         </div>
       </figure>
-      <div class="passage__text">
-        <h3 class="item-title">Passage</h3>
-        <p>Live subtitles for Sunday sermons. It waits for a pause, transcribes the phrase with Whisper, translates it offline and puts it on screen in Spanish or Chinese. Nothing leaves the laptop.</p>
-        <p class="job__links"><a href="https://github.com/alabgroup/translation" target="_blank" rel="noopener">See the code ↗</a></p>
-        <p lang="es" class="hand quote-note">"Y el pueblo dijo amén."</p>
-      </div>
-    </article>
-
-    <div class="side__pair">
-      <article class="side__site">
+        </div>
+        <div class="proj__text">
+          <h3 class="item-title">Passage</h3>
+          <p class="meta">For Alabaster Group · 2026</p>
+          <p>Live subtitles for Sunday sermons. It waits for a pause, transcribes the phrase with Whisper, translates it offline and puts it on screen in Spanish or Chinese. Nothing leaves the laptop.</p>
+          <p class="job__links"><a href="https://github.com/alabgroup/translation" target="_blank" rel="noopener">See the code ↗</a></p>
+        </div>
+      </article>
+      <article class="proj proj--flip">
+        <div class="proj__media">
         <figure class="device device--site">
           <div class="laptop">
             <div class="laptop__screen">
@@ -310,31 +310,32 @@
             <div class="laptop__base" aria-hidden="true"></div>
           </div>
         </figure>
-        <h3 class="item-title">alabaster.org</h3>
-        <p class="measure-s">Rebuilt off Squarespace as plain HTML and a small Python build. Sermons and livestream links update themselves.</p>
-        <p class="job__links"><a href="http://janetlee.me/alabaster-site/" target="_blank" rel="noopener">See the new site ↗</a><a href="https://github.com/janetcl/alabaster-site" target="_blank" rel="noopener">Code ↗</a></p>
+        </div>
+        <div class="proj__text">
+          <h3 class="item-title">alabaster.org</h3>
+          <p class="meta">For Alabaster Group · 2026</p>
+          <p>The church website, rebuilt off Squarespace as plain HTML and a small Python build. Sermons and livestream links update themselves.</p>
+          <p class="job__links"><a href="http://janetlee.me/alabaster-site/" target="_blank" rel="noopener">See the new site ↗</a><a href="https://github.com/janetcl/alabaster-site" target="_blank" rel="noopener">Code ↗</a></p>
+        </div>
       </article>
-      <article class="side__app">
+      <article class="proj">
+        <div class="proj__media proj__media--phone">
         <figure class="device device--phone" aria-label="Screens from the Alabaster Group iOS app: welcome, home and giving">
           <div class="phone"><div class="phone__track">
             <img class="phone__screen" src="img/app-welcome.jpg" width="506" height="1100" alt="App welcome screen: Your home base for church and events"><img class="phone__screen" src="img/app-home.jpg" width="506" height="1100" alt="App home screen with this Sunday's New York service"><img class="phone__screen" src="img/app-give.jpg" width="506" height="1100" alt="App giving screen">
           </div></div>
         </figure>
-        <h3 class="item-title">The church app</h3>
-        <p>An iOS app in Swift, launched in 2023 with church volunteers who helped with scope, content and testing.</p>
-        <p class="job__links"><a href="https://apps.apple.com/us/app/alabaster-group/id6446515286" target="_blank" rel="noopener">Get it on the App Store ↗</a></p>
-        <p class="margin-note hand tilt-l">design → launch, 2023</p>
+        </div>
+        <div class="proj__text">
+          <h3 class="item-title">The church app</h3>
+          <p class="meta">For Alabaster Group · 2023</p>
+          <p>An iOS app in Swift, launched with church volunteers who helped with scope, content and testing.</p>
+          <p class="job__links"><a href="https://apps.apple.com/us/app/alabaster-group/id6446515286" target="_blank" rel="noopener">Get it on the App Store ↗</a></p>
+        </div>
       </article>
-    </div>
-  </div>
-</section>
-
-<section id="school" class="school wrap">
-  <h2 class="section-title">Made at Princeton</h2>
-  <p class="side__intro">My senior thesis, for the dance teams I was on.</p>
-
-  <article class="passage">
-    <figure class="device device--passage device--dance">
+      <article class="proj proj--flip">
+        <div class="proj__media">
+        <figure class="device device--passage device--dance">
       <div class="laptop">
         <div class="laptop__screen">
           <picture>
@@ -345,16 +346,20 @@
         <div class="laptop__base" aria-hidden="true"></div>
       </div>
     </figure>
-    <div class="passage__text">
-      <h3 class="item-title">Dance Studio</h3>
-      <p>A 3D choreography tool for blocking formations. Upload a song, place dancers on the stage, then play it back to watch them move between formations in time with the music. If two dancers would collide, you can draw them curved paths around each other.</p>
-      <div class="paths">
+        </div>
+        <div class="proj__text">
+          <h3 class="item-title">Dance Studio</h3>
+          <p class="meta">Princeton senior thesis · 2020</p>
+          <p>A 3D choreography tool for blocking formations. Upload a song, place dancers on the stage, then play it back to watch them move between formations in time with the music. If two dancers would collide, you can draw them curved paths around each other.</p>
+          <div class="paths">
         <figure><img src="img/dance-paths-before.jpg" width="800" height="477" loading="lazy" alt="Two dancers on straight paths that cross and collide"><figcaption class="hand">straight paths: they collide</figcaption></figure>
         <figure><img src="img/dance-paths-after.jpg" width="800" height="477" loading="lazy" alt="The same two dancers on curved paths that avoid each other"><figcaption class="hand">custom paths: no collision</figcaption></figure>
       </div>
-      <p class="job__links"><a href="https://dance-0qqr.onrender.com/" target="_blank" rel="noopener">Try it ↗</a><a href="/files/Janet_Lee_Senior_Thesis.pdf" target="_blank" rel="noopener">Read the thesis (PDF) ↗</a></p>
+          <p class="job__links"><a href="https://dance-0qqr.onrender.com/" target="_blank" rel="noopener">Try it ↗</a><a href="/files/Janet_Lee_Senior_Thesis.pdf" target="_blank" rel="noopener">Read the thesis (PDF) ↗</a></p>
+        </div>
+      </article>
     </div>
-  </article>
+  </div>
 </section>
 
 <section id="about" class="about wrap">
