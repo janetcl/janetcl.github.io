@@ -8,53 +8,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 @page { size: letter; margin: 0; }
-:root { --ink: #1B1B1B; --muted: #5A5A54; --pen: #2442C9; --coral: #C2452F; --peach: #FFC2A3; }
+:root { --ink: #1B1B1B; --muted: #6B6B66; --pen: #2442C9; --rule: #D9DCE6; --peach: #FFC2A3; }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: #FFFFFF; }
 body {
   font-family: 'Instrument Sans', system-ui, sans-serif; color: var(--ink);
-  font-size: 9pt; line-height: 1.33;
+  font-size: 9pt; line-height: 1.35;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
-.page { width: 8.5in; padding: 0.36in 0.5in 0.28in; }
+.page { width: 8.5in; padding: 0.36in 0.55in 0.18in; }
 a { color: inherit; text-decoration: none; }
 p { margin: 0; }
 
 .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
-.name { margin: 0; font-size: 26pt; line-height: 1; font-weight: 700; letter-spacing: -0.015em; }
+.name { margin: 0; font-size: 24pt; line-height: 1; font-weight: 700; letter-spacing: -0.015em; }
 .hl { background: linear-gradient(transparent 58%, var(--peach) 58%, var(--peach) 92%, transparent 92%); padding: 0 3px; }
-.role { margin-top: 6px; font-size: 11pt; font-weight: 500; color: var(--muted); }
-.contact { text-align: right; line-height: 1.5; }
+.role { margin-top: 5px; font-size: 10.5pt; font-weight: 500; color: var(--ink); }
+.contact { text-align: right; line-height: 1.45; }
 .contact a { color: var(--pen); font-weight: 600; }
 
-/* Level 0: section */
-section { margin-top: 12px; }
-h2 { margin: 0 0 5px; font-size: 12pt; font-weight: 700; color: var(--ink); }
-h2 span { background: linear-gradient(transparent 62%, var(--peach) 62%, var(--peach) 94%, transparent 94%); padding: 0 2px; }
+/* Sections: the one place the accent appears in the body */
+section { margin-top: 10pt; }
+h2 {
+  margin: 0 0 4pt; padding-bottom: 2pt; border-bottom: .75pt solid var(--rule);
+  font-size: 9.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--pen);
+}
+h2 span { background: none; padding: 0; }
 
-/* Level 1: company / school */
-.org { margin-left: 12px; }
-.org + .org { margin-top: 10px; }
-.org__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.org__name { font-size: 10.2pt; font-weight: 700; }
-.org__name span { font-weight: 500; color: var(--muted); }
-.when { color: var(--coral); font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* Company / school */
+.org + .org { margin-top: 7pt; }
+.org__row, .team__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.org__name { font-size: 10.5pt; font-weight: 700; }
+.org__name span { font-weight: 500; color: var(--ink); }
+.when { color: var(--ink); font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
-/* Level 2: team within a company */
-.team { margin: 6px 0 0 16px; }
-.team__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.team__name { font-weight: 650; color: var(--pen); }
+/* Team within a company */
+.team { margin: 4pt 0 0 10pt; }
+.team__name { font-size: 9.5pt; font-weight: 650; color: var(--ink); }
 .team__name span { font-weight: 400; color: var(--muted); }
-.team .when { font-weight: 500; }
+.team .when { color: var(--muted); font-weight: 400; font-size: 8.5pt; }
 
-/* Level 3: bullets, indented under whatever they belong to */
-ul { margin: 3px 0 0 14px; padding-left: 12px; }
-li { margin: 0 0 1.5px; padding-left: 2px; }
-li::marker { color: var(--pen); }
-.org > ul { margin-left: 16px; }
-.note { margin: 3px 0 0 18px; }
+/* Bullets: one indent step under whatever they belong to */
+ul { margin: 2pt 0 0; padding-left: 11pt; }
+li { margin: 0 0 1.5pt; padding-left: 2px; }
+li::marker { color: #9A9A94; }
+.note { margin: 2pt 0 0; }
 
-.rows { display: grid; grid-template-columns: 1.6in 1fr; gap: 3px 14px; margin: 0 0 0 14px; }
+.rows { display: grid; grid-template-columns: 1.55in 1fr; gap: 2pt 14px; }
 .rows dt { font-weight: 650; }
 .rows dd { margin: 0; }
 .soft { color: var(--muted); }
