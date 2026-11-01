@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 <script>
   try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
@@ -337,7 +337,10 @@
     <figure class="device device--passage device--dance">
       <div class="laptop">
         <div class="laptop__screen">
-          <img src="img/dance-studio.jpg" width="1600" height="833" loading="lazy" alt="Dance Studio: ten dancers placed on a 3D wooden stage, with a timeline of formations underneath">
+          <picture>
+            <source media="(prefers-reduced-motion: reduce)" srcset="img/dance-studio.jpg">
+            <img src="img/dance-studio-demo.gif" width="800" height="500" loading="lazy" alt="Dance Studio demo: the 3D wooden stage drops in and the camera swings around it">
+          </picture>
         </div>
         <div class="laptop__base" aria-hidden="true"></div>
       </div>

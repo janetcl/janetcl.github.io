@@ -510,3 +510,4 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .paths img { display: block; width: 100%; height: auto; border-radius: 6px; }
 .paths figcaption { margin-top: 6px; font-size: 24px; line-height: 1.05; }
 .device--dance { margin-top: 0; }
+.laptop__screen > picture, .laptop__screen > picture img { display: block; width: 100%; height: auto; border-radius: 3px; }
