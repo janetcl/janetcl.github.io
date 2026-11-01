@@ -501,3 +501,12 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .callout svg { flex: 0 0 auto; margin-top: 12px; }
 .device--passage { margin-top: 64px; }
 @media (max-width: 640px) { .callout { display: none; } .device--passage { margin-top: 0; } }
+
+/* ---------- Made at Princeton ---------- */
+.school { padding-block: var(--section-gap) 0; }
+.laptop__screen > img { display: block; width: 100%; height: auto; border-radius: 3px; }
+.paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+.paths figure { margin: 0; }
+.paths img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.paths figcaption { margin-top: 6px; font-size: 24px; line-height: 1.05; }
+.device--dance { margin-top: 0; }

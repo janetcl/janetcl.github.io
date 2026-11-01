@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=16">
 <script>
   try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
@@ -172,6 +172,7 @@
   <nav class="nav" aria-label="Main">
     <a href="#work">Work</a>
     <a href="#side">Side projects</a>
+    <a href="#school">Princeton</a>
     <a href="#about">About</a>
     <a href="/files/Janet_Lee_Resume.pdf?v=5">Resume</a>
   </nav>
@@ -326,6 +327,31 @@
       </article>
     </div>
   </div>
+</section>
+
+<section id="school" class="school wrap">
+  <h2 class="section-title">Made at Princeton</h2>
+  <p class="side__intro">My senior thesis, for the dance teams I was on.</p>
+
+  <article class="passage">
+    <figure class="device device--passage device--dance">
+      <div class="laptop">
+        <div class="laptop__screen">
+          <img src="img/dance-studio.jpg" width="1600" height="833" loading="lazy" alt="Dance Studio: ten dancers placed on a 3D wooden stage, with a timeline of formations underneath">
+        </div>
+        <div class="laptop__base" aria-hidden="true"></div>
+      </div>
+    </figure>
+    <div class="passage__text">
+      <h3 class="item-title">Dance Studio</h3>
+      <p>A 3D choreography tool for blocking formations. Upload a song, place dancers on the stage, then play it back to watch them move between formations in time with the music. If two dancers would collide, you can draw them curved paths around each other.</p>
+      <div class="paths">
+        <figure><img src="img/dance-paths-before.jpg" width="800" height="477" loading="lazy" alt="Two dancers on straight paths that cross and collide"><figcaption class="hand">straight paths: they collide</figcaption></figure>
+        <figure><img src="img/dance-paths-after.jpg" width="800" height="477" loading="lazy" alt="The same two dancers on curved paths that avoid each other"><figcaption class="hand">custom paths: no collision</figcaption></figure>
+      </div>
+      <p class="job__links"><a href="https://dance-0qqr.onrender.com/" target="_blank" rel="noopener">Try it ↗</a><a href="/files/Janet_Lee_Senior_Thesis.pdf" target="_blank" rel="noopener">Read the thesis (PDF) ↗</a></p>
+    </div>
+  </article>
 </section>
 
 <section id="about" class="about wrap">
