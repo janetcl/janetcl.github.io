@@ -457,3 +457,6 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .palette:focus-visible { outline: 3px solid var(--pen); outline-offset: 2px; }
 @keyframes palette-wiggle { 0% { transform: rotate(0); } 30% { transform: rotate(-10deg) scale(1.06); } 60% { transform: rotate(6deg); } 100% { transform: rotate(0); } }
 @media (prefers-reduced-motion: reduce) { .palette svg, .dab { transition: none; } .palette.is-dabbing svg { animation: none; } }
+
+.job__links { display: flex; flex-wrap: wrap; gap: 6px 24px; margin-top: 14px; font-weight: 600; font-size: 17px; }
+.job__links a { padding-block: 6px; }
