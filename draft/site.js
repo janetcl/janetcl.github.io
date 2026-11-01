@@ -1,37 +1,26 @@
-// Hides the first-visit loader after the page has loaded and it has shown for at least ~1.2s.
+// Hides the loader as soon as the page has loaded. It only ever appeared if loading was slow.
 (function () {
   var root = document.documentElement;
-  if (!root.classList.contains('is-loading')) return;
-
   var loader = document.getElementById('loader');
-  var MIN_MS = 3000;
-  var MAX_MS = 5000;
-  var start = (window.performance && performance.now) ? performance.now() : Date.now();
+  var MIN_VISIBLE_MS = 500; // once shown, stay long enough not to flicker
   var finished = false;
-
-  function now() {
-    return (window.performance && performance.now) ? performance.now() : Date.now();
-  }
 
   function finish() {
     if (finished) return;
     finished = true;
-    if (!loader) { root.classList.remove('is-loading'); return; }
-    loader.classList.add('is-done');
-    setTimeout(function () { root.classList.remove('is-loading'); }, 450);
+    clearTimeout(window.__jlLoaderTimer);
+    if (!root.classList.contains('is-loading')) return;
+    var shownFor = Date.now() - (window.__jlLoaderShownAt || 0);
+    setTimeout(function () {
+      if (loader) loader.classList.add('is-done');
+      setTimeout(function () { root.classList.remove('is-loading'); }, 450);
+    }, Math.max(0, MIN_VISIBLE_MS - shownFor));
   }
 
-  function whenLoaded() {
-    setTimeout(finish, Math.max(0, MIN_MS - (now() - start)));
-  }
-
-  if (document.readyState === 'complete') whenLoaded();
-  else window.addEventListener('load', whenLoaded);
+  if (document.readyState === 'complete') finish();
+  else window.addEventListener('load', finish);
 
   // A tap or key press skips it.
-  if (loader) loader.addEventListener('click', finish);
-  window.addEventListener('keydown', finish, { once: true });
-
-  // Never trap the visitor if something stalls.
-  setTimeout(finish, MAX_MS);
+  if (loader) loader.addEventListener('click', function () { finished = false; window.__jlLoaderShownAt = 0; finish(); });
+  window.addEventListener('keydown', function () { window.__jlLoaderShownAt = 0; finish(); }, { once: true });
 })();

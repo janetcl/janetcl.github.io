@@ -17,15 +17,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script>
-  // Loader: first visit per session only, and never with reduced motion.
+  // Loader: only appears if the page is still loading after 400ms (slow connections).
   (function () {
-    var show = false;
-    try {
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      show = !reduce && !sessionStorage.getItem('jl-loader-seen');
-      if (show) sessionStorage.setItem('jl-loader-seen', '1');
-    } catch (e) { show = false; }
-    if (show) document.documentElement.classList.add('is-loading');
+    var root = document.documentElement;
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    if (reduce) return;
+    window.__jlLoaderTimer = setTimeout(function () {
+      if (document.readyState !== 'complete') {
+        root.classList.add('is-loading');
+        window.__jlLoaderShownAt = Date.now();
+      }
+    }, 400);
   })();
 </script>
 </head>
@@ -165,7 +168,7 @@
     <a href="#work">Work</a>
     <a href="#side">Side projects</a>
     <a href="#about">About</a>
-    <a href="/files/Janet_Lee_Resume.pdf">Résumé</a>
+    <a href="/files/Janet_Lee_Resume.pdf">Resume</a>
   </nav>
 </header>
 
@@ -201,7 +204,7 @@
 
 <section id="work" class="work wrap">
   <h2 class="section-title">What I work on</h2>
-  <p class="section-note hand">(the short version. the long one is on my résumé)</p>
+  <p class="section-note hand">(the short version. the long one is on my resume)</p>
 
   <div class="work__list">
     <article class="job">
@@ -301,7 +304,7 @@
       <a href="https://github.com/janetcl">GitHub</a>
       <a href="https://www.linkedin.com/in/janet-lee-2020/">LinkedIn</a>
       <a href="https://www.instagram.com/missyjoenette/">Instagram</a>
-      <a href="/files/Janet_Lee_Resume.pdf">Résumé</a>
+      <a href="/files/Janet_Lee_Resume.pdf">Resume</a>
     </nav>
   </div>
 </footer>
