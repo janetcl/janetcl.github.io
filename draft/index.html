@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=11">
 <script>
   try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
@@ -261,8 +261,10 @@
     <p class="side__intro">I serve on the AV team at Alabaster Group, a church in New York and Boston. A few things I've made for it:</p>
 
     <article class="passage">
-      <figure class="taped taped--passage">
-        <div class="pdemo" data-ui role="img" aria-label="Passage demo: each sermon line appears in English, then in Spanish and Chinese a moment later">
+      <figure class="device device--passage">
+        <div class="laptop">
+          <div class="laptop__screen">
+            <div class="pdemo" data-ui role="img" aria-label="Passage demo: each sermon line appears in English, then in Spanish and Chinese a moment later">
           <div class="pdemo__bar" aria-hidden="true"><span class="pdemo__dot"></span><span class="pdemo__name">Passage</span><span class="pdemo__status">listening</span></div>
           <div class="pdemo__cols" aria-hidden="true">
             <div class="pdemo__col"><div class="pdemo__panel" lang="en">
@@ -282,8 +284,10 @@
             </div><p class="pdemo__label">Chinese</p></div>
           </div>
         </div>
-        <span class="tape tape--a" aria-hidden="true"></span>
-        <span class="tape tape--b" aria-hidden="true"></span>
+          </div>
+          <div class="laptop__base" aria-hidden="true"></div>
+        </div>
+        <p class="sticky hand" aria-hidden="true">live subtitles!</p>
       </figure>
       <div class="passage__text">
         <h3 class="item-title">Passage</h3>
@@ -294,21 +298,26 @@
 
     <div class="side__pair">
       <article class="side__site">
-        <figure class="taped taped--site">
-          <video class="site-video" muted loop playsinline preload="metadata" poster="img/alabaster.jpg" width="1200" height="750" aria-label="Scrolling through the alabaster.org home page">
+        <figure class="device device--site">
+          <div class="laptop">
+            <div class="laptop__screen">
+              <video class="site-video" muted loop playsinline preload="metadata" poster="img/alabaster.jpg" width="1200" height="750" aria-label="Scrolling through the alabaster.org home page">
             <source src="img/alabaster-scroll.mp4" type="video/mp4">
           </video>
-          <span class="tape tape--c" aria-hidden="true"></span>
+            </div>
+            <div class="laptop__base" aria-hidden="true"></div>
+          </div>
+          <p class="sticky hand" aria-hidden="true">alabaster.org</p>
         </figure>
         <h3 class="item-title">alabaster.org</h3>
         <p class="measure-s">Rebuilt off Squarespace as plain HTML and a small Python build. Sermons and livestream links update themselves.</p>
       </article>
       <article class="side__app">
-        <figure class="phone" aria-label="Screens from the Alabaster Group iOS app: welcome, home and giving">
-          <img class="phone__screen is-on" src="img/app-welcome.jpg" width="506" height="1100" loading="lazy" alt="App welcome screen: Your home base for church and events">
-          <img class="phone__screen" src="img/app-home.jpg" width="506" height="1100" loading="lazy" alt="App home screen with this Sunday's New York service">
-          <img class="phone__screen" src="img/app-give.jpg" width="506" height="1100" loading="lazy" alt="App giving screen">
-          <span class="tape tape--phone" aria-hidden="true"></span>
+        <figure class="device device--phone" aria-label="Screens from the Alabaster Group iOS app: welcome, home and giving">
+          <div class="phone"><div class="phone__track">
+            <img class="phone__screen" src="img/app-welcome.jpg" width="506" height="1100" alt="App welcome screen: Your home base for church and events"><img class="phone__screen" src="img/app-home.jpg" width="506" height="1100" alt="App home screen with this Sunday's New York service"><img class="phone__screen" src="img/app-give.jpg" width="506" height="1100" alt="App giving screen">
+          </div></div>
+          <p class="sticky hand" aria-hidden="true">the app!</p>
         </figure>
         <h3 class="item-title">The church app</h3>
         <p>An iOS app in Swift, launched in 2023 with church volunteers who helped with scope, content and testing.</p>
@@ -353,6 +362,6 @@
 
 </div>
 
-<script src="site.js?v=6" defer></script>
+<script src="site.js?v=8" defer></script>
 </body>
 </html>

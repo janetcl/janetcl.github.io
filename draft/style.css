@@ -464,15 +464,42 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 /* The alabaster.org clip keeps its 16:10 shape (the height attribute must not win) */
 .taped video { height: auto; }
 
-/* Church app: real screens crossfading in a phone */
+
+/* ---------- Project devices: straight laptops and a phone, labelled with a sticky note ---------- */
+.device { position: relative; margin: 0; }
+.laptop { filter: drop-shadow(0 14px 22px rgba(27, 27, 27, 0.14)); }
+.laptop__screen { background: #1B1C22; padding: 2.4% 2.4% 2.8%; border-radius: 14px 14px 4px 4px; }
+.laptop__screen > video, .laptop__screen > .pdemo {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover;
+  padding: 0; background: #15161B; box-shadow: none; transform: none; border-radius: 3px;
+}
+.laptop__screen > .pdemo { display: flex; flex-direction: column; overflow: hidden; }
+.laptop__base {
+  position: relative; height: 14px; margin: 0 -5%;
+  background: #D6D5D0; border-radius: 2px 2px 12px 12px;
+}
+.laptop__base::after {
+  content: ''; position: absolute; left: 50%; top: 0; width: 16%; height: 5px;
+  transform: translateX(-50%); background: #BEBCB6; border-radius: 0 0 6px 6px;
+}
+
+.device--phone { width: min(240px, 60%); margin-bottom: 40px; }
 .phone {
-  position: relative; width: min(250px, 58%); aspect-ratio: 506 / 1100;
-  margin: 0 0 36px; padding: 9px; border-radius: 34px; background: #15161B;
-  box-shadow: var(--lift); transform: rotate(2deg);
+  overflow: hidden; padding: 9px; border-radius: 34px; background: #1B1C22;
+  filter: drop-shadow(0 14px 22px rgba(27, 27, 27, 0.14));
 }
-.phone__screen {
-  position: absolute; inset: 9px; width: calc(100% - 18px); height: calc(100% - 18px);
-  object-fit: cover; border-radius: 26px; opacity: 0; transition: opacity 700ms ease-in-out;
+.phone__track { display: flex; border-radius: 26px; overflow: hidden; }
+.phone__screen { flex: 0 0 100%; width: 100%; height: auto; aspect-ratio: 506 / 1100; object-fit: cover; transition: transform 650ms cubic-bezier(.65,0,.35,1); }
+
+.sticky {
+  position: absolute; top: -22px; right: -14px; z-index: 2; margin: 0;
+  padding: 12px 18px 14px; background: var(--peach); color: var(--ink);
+  font-size: 30px; line-height: 1; transform: rotate(3deg);
+  box-shadow: 0 2px 3px rgba(27, 27, 27, 0.08), 0 8px 16px rgba(27, 27, 27, 0.10);
 }
-.phone__screen.is-on { opacity: 1; }
-.tape--phone { top: -14px; left: 50%; width: 96px; height: 30px; transform: translateX(-50%) rotate(-4deg); }
+.device--phone .sticky { right: -40px; top: 28px; transform: rotate(-4deg); }
+@media (max-width: 640px) {
+  .sticky { font-size: 24px; padding: 9px 13px 11px; right: -4px; top: -16px; }
+  .device--phone .sticky { right: -24px; }
+}
+.device--passage { flex: 3 1 560px; min-width: 0; }
