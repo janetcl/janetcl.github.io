@@ -99,23 +99,28 @@
   run();
 })();
 
-// Colour themes: pick in the top bar, remembered for next time.
+// Colour themes: click the palette to step through them; remembered for next time.
 (function () {
   var root = document.documentElement;
-  var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-theme-pick]'));
+  var btn = document.querySelector('.palette');
+  if (!btn) return;
+  var order = ['', 'cherry', 'magenta', 'neon'];
+  var names = { '': 'blue and peach', cherry: 'cherry and pink', magenta: 'magenta and lime', neon: 'orange and neon yellow' };
+  var dabs = Array.prototype.slice.call(btn.querySelectorAll('.dab'));
   var meta = document.querySelector('meta[name="theme-color"]');
   function sync() {
     var cur = root.dataset.theme || '';
-    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-pick') === cur)); });
+    dabs.forEach(function (d) { d.classList.toggle('is-on', d.getAttribute('data-for') === cur); });
+    btn.setAttribute('aria-label', 'Change colors (now: ' + names[cur] + ')');
     if (meta) meta.setAttribute('content', getComputedStyle(root).getPropertyValue('--paper').trim() || '#FAFAF7');
   }
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var t = b.getAttribute('data-theme-pick');
-      if (t) root.dataset.theme = t; else delete root.dataset.theme;
-      try { if (t) localStorage.setItem('jl-theme', t); else localStorage.removeItem('jl-theme'); } catch (e) {}
-      sync();
-    });
+  btn.addEventListener('click', function () {
+    var cur = root.dataset.theme || '';
+    var next = order[(order.indexOf(cur) + 1) % order.length];
+    if (next) root.dataset.theme = next; else delete root.dataset.theme;
+    try { if (next) localStorage.setItem('jl-theme', next); else localStorage.removeItem('jl-theme'); } catch (e) {}
+    btn.classList.remove('is-dabbing'); void btn.offsetWidth; btn.classList.add('is-dabbing');
+    sync();
   });
   sync();
 })();
