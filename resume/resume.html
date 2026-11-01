@@ -8,22 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
 @page { size: letter; margin: 0; }
-:root {
-  --ink: #1B1B1B;
-  --muted: #55554F;
-  --pen: #2442C9;
-  --peach: #FFC2A3;
-}
+:root { --ink: #1B1B1B; --muted: #55554F; --pen: #2442C9; --peach: #FFC2A3; }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: #FFFFFF; }
 body {
-  font-family: 'Instrument Sans', system-ui, sans-serif;
-  color: var(--ink);
-  font-size: 9.2pt;
-  line-height: 1.37;
+  font-family: 'Instrument Sans', system-ui, sans-serif; color: var(--ink);
+  font-size: 9pt; line-height: 1.33;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
-.page { width: 8.5in; min-height: 11in; padding: 0.42in 0.52in 0.36in; }
+.page { width: 8.5in; min-height: 11in; padding: 0.36in 0.5in 0.3in; }
 a { color: inherit; text-decoration: none; }
 p { margin: 0; }
 
@@ -34,25 +27,34 @@ p { margin: 0; }
 .contact { text-align: right; line-height: 1.5; }
 .contact a { color: var(--pen); font-weight: 600; }
 
-section { margin-top: 12px; }
-h2 { margin: 0 0 5px; font-size: 11.5pt; font-weight: 700; color: var(--pen); letter-spacing: -0.005em; }
+/* Level 0: section */
+section { margin-top: 11px; }
+h2 { margin: 0 0 4px; font-size: 11.5pt; font-weight: 700; color: var(--pen); }
 h2 span { background: linear-gradient(transparent 62%, var(--peach) 62%, var(--peach) 94%, transparent 94%); padding: 0 2px; }
 
-.company { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; font-size: 10.5pt; }
-.company b { font-weight: 700; }
-.item + .item { margin-top: 8px; }
-.row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.row .t b { font-weight: 700; }
-.row .t span { color: var(--muted); }
+/* Level 1: company / school */
+.org + .org { margin-top: 8px; }
+.org__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.org__name { font-size: 10.2pt; font-weight: 700; }
+.org__name span { font-weight: 500; }
 .when { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
-ul { margin: 3px 0 0; padding-left: 14px; }
-li { margin: 0 0 1.5px; padding-left: 2px; }
-li::marker { color: var(--pen); }
+/* Level 2: team within a company */
+.team { margin: 5px 0 0 16px; }
+.team__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.team__name { font-weight: 650; }
+.team__name span { font-weight: 400; color: var(--muted); }
 
-.grid2 { display: grid; grid-template-columns: 1.65in 1fr; gap: 1px 14px; }
-.grid2 dt { font-weight: 700; }
-.grid2 dd { margin: 0; }
+/* Level 3: bullets, indented under whatever they belong to */
+ul { margin: 2px 0 0 16px; padding-left: 12px; }
+li { margin: 0 0 1px; padding-left: 2px; }
+li::marker { color: var(--pen); }
+.org > ul { margin-left: 16px; }
+.note { margin: 2px 0 0 16px; }
+
+.rows { display: grid; grid-template-columns: 1.6in 1fr; gap: 1.5px 14px; margin: 0 0 0 16px; }
+.rows dt { font-weight: 650; }
+.rows dd { margin: 0; }
 .soft { color: var(--muted); }
 </style>
 </head>
@@ -73,10 +75,12 @@ li::marker { color: var(--pen); }
 
 <section>
 <h2><span>Experience</span></h2>
-<p class="company"><span><b>Meta</b> · Staff Software Engineer · New York, NY</span><span class="when">Sep 2020 – Present</span></p>
 
-<div class="item">
-<div class="row"><p class="t"><b>Meta Superintelligence Labs</b> <span>· Voice &amp; Embodiment</span></p><p class="when">Dec 2024 – Present</p></div>
+<div class="org">
+<div class="org__row"><p class="org__name">Meta <span>· Staff Software Engineer · New York, NY</span></p><p class="when">Sep 2020 – Present</p></div>
+
+<div class="team">
+<div class="team__row"><p class="team__name">Meta Superintelligence Labs <span>· Voice &amp; Embodiment</span></p><p class="when">Dec 2024 – Present</p></div>
 <ul>
 <li>Android lead for Muse voice, real-time calls with live AI avatars over WebRTC, from the Connect 2026 demo through launch.</li>
 <li>Built 0-to-1 AI voice and avatar calling for Facebook, Instagram, and Messenger on Android and iOS, syncing live audio, video, and captions.</li>
@@ -85,8 +89,8 @@ li::marker { color: var(--pen); }
 </ul>
 </div>
 
-<div class="item">
-<div class="row"><p class="t"><b>Facebook Video</b> <span>· Reels Consumption Growth</span></p><p class="when">Dec 2021 – Nov 2024</p></div>
+<div class="team">
+<div class="team__row"><p class="team__name">Facebook Video <span>· Reels Consumption Growth</span></p><p class="when">Dec 2021 – Nov 2024</p></div>
 <ul>
 <li>Android tech lead; my launches drove 50–100%+ of team goals.</li>
 <li>Shipped Reels autoplay in Feed after fixing crash, memory, and scroll regressions: +3.8% watch time, +25M daily viewers.</li>
@@ -95,17 +99,18 @@ li::marker { color: var(--pen); }
 </ul>
 </div>
 
-<div class="item">
-<div class="row"><p class="t"><b>Reality Labs</b> <span>· Facebook App on Wearables</span></p><p class="when">Sep 2020 – Nov 2021</p></div>
+<div class="team">
+<div class="team__row"><p class="team__name">Reality Labs <span>· Facebook App on Wearables</span></p><p class="when">Sep 2020 – Nov 2021</p></div>
 <ul>
 <li>Owned Stories sharing on unreleased wearable hardware across five partner teams on fixed deadlines; rated second best in UX validation.</li>
 <li>Built the first end-to-end and UI tests, raising coverage from 0% to 80%.</li>
 <li>Stepped up as tech lead and PM when the team was understaffed.</li>
 </ul>
 </div>
+</div>
 
-<div class="item" style="margin-top: 13px">
-<div class="row"><p class="t"><b>Facebook</b> <span>· Software Engineering Intern · Menlo Park, CA</span></p><p class="when">Summer 2019</p></div>
+<div class="org">
+<div class="org__row"><p class="org__name">Facebook <span>· Software Engineering Intern · Menlo Park, CA</span></p><p class="when">Summer 2019</p></div>
 <ul>
 <li>Determined optimal budgets and durations for lightweight ads to hit business outcomes (Python, SQL).</li>
 <li>Surfaced ad recommendations to millions of advertisers (PHP, React.js).</li>
@@ -113,8 +118,8 @@ li::marker { color: var(--pen); }
 </ul>
 </div>
 
-<div class="item">
-<div class="row"><p class="t"><b>Central de Ofertas</b> <span>· Full Stack Software Development Intern · Buenos Aires, Argentina</span></p><p class="when">Summer 2018</p></div>
+<div class="org">
+<div class="org__row"><p class="org__name">Central de Ofertas <span>· Full Stack Software Development Intern · Buenos Aires</span></p><p class="when">Summer 2018</p></div>
 <ul>
 <li>Built a full-stack price comparison web app for staff and sellers (Node.js, MongoDB, Material Design).</li>
 <li>Automated MySQL data loading with JavaScript scripts.</li>
@@ -124,8 +129,8 @@ li::marker { color: var(--pen); }
 
 <section>
 <h2><span>Projects</span></h2>
-<div class="item">
-<div class="row"><p class="t"><b>Church App</b> <span>· iOS Developer + Project Lead</span></p><p class="when">2023</p></div>
+<div class="org">
+<div class="org__row"><p class="org__name">Church App <span>· iOS Developer + Project Lead</span></p><p class="when">2023</p></div>
 <ul>
 <li>Built an iOS app for my church in Swift, from design through launch.</li>
 <li>Led non-engineer volunteers through scoping, content, and testing.</li>
@@ -135,15 +140,15 @@ li::marker { color: var(--pen); }
 
 <section>
 <h2><span>Education</span></h2>
-<div class="item">
-<div class="row"><p class="t"><b>Princeton University</b> <span>· A.B. Computer Science · GPA 3.64</span></p><p class="when">Spring 2020</p></div>
-<p style="margin-top: 3px">Certificates in Finance and Spanish. Projects: Dance Studio (3D choreography tool), TigerMeals (founder).</p>
+<div class="org">
+<div class="org__row"><p class="org__name">Princeton University <span>· A.B. Computer Science · GPA 3.64</span></p><p class="when">Spring 2020</p></div>
+<p class="note">Certificates in Finance and Spanish. Projects: Dance Studio (3D choreography tool), TigerMeals (founder).</p>
 </div>
 </section>
 
 <section>
 <h2><span>Skills</span></h2>
-<dl class="grid2" style="margin: 0">
+<dl class="rows">
 <dt>Programming</dt><dd>Kotlin, Java (6+ yrs) · Swift, Objective-C (1+ yr) · Hack, Python, SQL</dd>
 <dt>Platforms &amp; tools</dt><dd>Android SDK, Jetpack Compose, iOS, WebRTC, GraphQL, React, Git, A/B testing, AI agents, Graphic Design</dd>
 <dt>Languages</dt><dd>English <span class="soft">(native)</span>, Spanish <span class="soft">(fluent)</span>, Mandarin <span class="soft">(intermediate)</span></dd>
@@ -152,7 +157,7 @@ li::marker { color: var(--pen); }
 
 <section>
 <h2><span>Leadership</span></h2>
-<dl class="grid2" style="margin: 0">
+<dl class="rows">
 <dt>Christians@MetaNY</dt><dd>NY Area Lead <span class="soft">· leads weekly Bible studies and monthly lunches</span></dd>
 <dt>Mentor + Intern Manager</dt><dd>to 15 engineers and interns</dd>
 <dt>Alabaster Group (Church)</dt><dd>Tech Lead, AV Team</dd>
