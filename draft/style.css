@@ -80,7 +80,7 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
   display: flex; flex-wrap: wrap; align-items: center;
   gap: 56px clamp(40px, 6vw, 96px);
 }
-.hero__text { flex: 1 1 520px; min-width: 0; }
+.hero__text { flex: 1 1 400px; min-width: 0; }
 .hero__title {
   font-size: clamp(88px, 12vw, 184px);
   line-height: 0.82;
@@ -106,7 +106,7 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 .text-link { display: inline-flex; align-items: center; min-height: 52px; padding: 0 8px; font-weight: 700; }
 
 /* Polaroid */
-.polaroid { flex: 0 1 400px; min-width: 260px; position: relative; }
+.polaroid { flex: 0 1 360px; min-width: 260px; position: relative; }
 .polaroid__frame { background: none; padding: 0; }
 .polaroid__frame img {
   width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%;
@@ -523,3 +523,8 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .proj .device--passage, .proj .device--site { margin-top: 0; }
 .proj .device--passage:has(.callout) { margin-top: 64px; }
 @media (max-width: 640px) { .laptop__screen > .pdemo { aspect-ratio: 4 / 5; } }
+
+/* Comfortable tap targets for text links on phones */
+.job__links a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; }
+.site-footer a { display: inline-flex; align-items: center; min-height: 44px; }
+@media (min-width: 901px) and (max-width: 1180px) { .hero__title { font-size: clamp(88px, 10vw, 120px); } }
