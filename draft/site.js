@@ -124,3 +124,23 @@
   });
   sync();
 })();
+
+// Church app: crossfade through the real screens while the phone is on screen.
+(function () {
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  var phone = document.querySelector('.phone');
+  if (!phone || reduce) return;
+  var screens = phone.querySelectorAll('.phone__screen');
+  var i = 0, timer = null;
+  function next() {
+    screens[i].classList.remove('is-on');
+    i = (i + 1) % screens.length;
+    screens[i].classList.add('is-on');
+  }
+  function start() { if (!timer) timer = setInterval(next, 2600); }
+  function stop() { clearInterval(timer); timer = null; }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }, { threshold: 0.3 }).observe(phone);
+  } else start();
+})();
