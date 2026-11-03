@@ -1,0 +1,54 @@
+/* by Jamal Hassouni*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+body{
+  margin: 0;
+  padding: 0;
+ font-family: 'Roboto', sans-serif !important;
+}
+
+.navigation {
+  display: inline-block;
+}
+
+.logo {
+  display: inline-block;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #4DC3FA;
+  justify-content: center;
+}
+
+h2 {
+  font-size:1em;
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height:1em;
+  padding-bottom: 1em;
+  color: #cc4c5d;
+  justify-content: center;
+}
+
+h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #cc4c5d;
+  text-decoration: none;
+  position: sticky;
+}
+
+h3 {
+    font-size:1em;
+    font-weight: 300;
+    line-height:1em;
+    text-align: left;
+    color: #4DC3FA;
+  }
+
+.blue { color: #185875; }
+.aqua { color: #2bca8b; }
