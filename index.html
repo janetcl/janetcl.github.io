@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=25">
+<link rel="stylesheet" href="style.css?v=26">
 <script>
   try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
@@ -354,10 +354,9 @@
         <figure class="device device--passage device--dance">
       <div class="laptop">
         <div class="laptop__screen">
-          <picture>
-            <source media="(prefers-reduced-motion: reduce)" srcset="img/dance-studio-spiral.jpg">
-            <img src="img/dance-studio-spiral.gif" width="560" height="350" loading="lazy" alt="Dance Studio playing back a 12-dancer spiral: dancers move along their paths between formations">
-          </picture>
+          <video class="site-video" muted loop playsinline preload="metadata" poster="img/dance-studio-2026.jpg" width="1200" height="750" aria-label="Dance Studio 2026: a nine-dancer routine plays through five formations while the camera orbits, then the top view shows each formation's paths">
+            <source src="img/dance-studio-2026.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="laptop__base" aria-hidden="true"></div>
       </div>
@@ -366,8 +365,8 @@
         <div class="proj__text">
           <h3 class="item-title">Dance Studio, revived</h3>
           <p class="meta">Personal project · 2026</p>
-          <p>Six years later I brought my thesis back online. I updated it to current Python and Flask, moved it to Render, and made it open to everyone: you can choreograph as a guest and only sign in to save. Here it is playing back a 12-dancer spiral.</p>
-          <p class="job__links"><a href="https://dance-0qqr.onrender.com/" target="_blank" rel="noopener">Try it ↗</a><a href="https://github.com/janetcl/dance" target="_blank" rel="noopener">Code ↗</a></p>
+          <p>Six years later I rebuilt my thesis from the ground up: real 3D dancers, formations counted in eights, count sheets, pairs, and one-click shapes like circles and spirals. Anyone can choreograph as a guest and sign in only to save. Here it plays a nine-dancer opener, then shows each formation's paths from above.</p>
+          <p class="job__links"><a href="/dance-studio/">Try it ↗</a><a href="https://github.com/janetcl/dance" target="_blank" rel="noopener">Code ↗</a></p>
         </div>
       </article>
     </div>
@@ -409,6 +408,6 @@
 
 </div>
 
-<script src="site.js?v=8" defer></script>
+<script src="site.js?v=9" defer></script>
 </body>
 </html>

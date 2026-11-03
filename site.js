@@ -37,13 +37,12 @@
   }
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
-  var video = document.querySelector('.site-video');
-  if (video) {
+  Array.prototype.forEach.call(document.querySelectorAll('.site-video'), function (video) {
     onScreen(video, function (visible) {
       if (visible) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
       else video.pause();
     });
-  }
+  });
 
   var demo = document.querySelector('.pdemo');
   if (!demo || !window.Promise) return;
