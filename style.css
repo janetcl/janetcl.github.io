@@ -195,8 +195,6 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
 .pdemo.is-fading .pdemo__panel p { opacity: 0; }
 @media (max-width: 640px) {
   .taped .pdemo { aspect-ratio: 4 / 5; }
-  .pdemo__cols { grid-template-columns: 1fr; }
-  .pdemo__panel { font-size: 14px; }
 }
 .tape--a { top: -12px; left: 8%; width: 110px; height: 32px; transform: rotate(-6deg); }
 .tape--b { top: -10px; right: 8%; width: 110px; height: 32px; transform: rotate(5deg); }
@@ -522,7 +520,6 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .proj__text > p:not(.meta) { margin-top: 12px; }
 .proj .device--passage, .proj .device--site { margin-top: 0; }
 .proj .device--passage:has(.callout) { margin-top: 64px; }
-@media (max-width: 640px) { .laptop__screen > .pdemo { aspect-ratio: 4 / 5; } }
 
 /* Comfortable tap targets for text links on phones */
 .job__links a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; }
@@ -530,21 +527,19 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 @media (min-width: 901px) and (max-width: 1180px) { .hero__title { font-size: clamp(88px, 10vw, 120px); } }
 .laptop__screen > picture img { aspect-ratio: 16 / 10; object-fit: cover; }
 
-/* ---------- Phones: Passage as a plain app window, no squeezed laptop ---------- */
+/* ---------- Passage: same laptop and three columns at every size; older lines fade out at the top instead of being cut ---------- */
+.pdemo__panel { position: relative; }
+.pdemo__panel::before {
+  content: ""; position: absolute; z-index: 1; inset: 2px 2px auto; height: 38%;
+  border-radius: 6px 6px 0 0; background: linear-gradient(#000 20%, rgba(0, 0, 0, 0)); pointer-events: none;
+}
 @media (max-width: 640px) {
-  .device--passage .laptop { filter: none; }
-  .device--passage .laptop__base { display: none; }
-  .device--passage .laptop__screen { padding: 0; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 28px rgba(27, 27, 27, 0.16); }
-  .laptop__screen > .pdemo { aspect-ratio: auto; border-radius: 0; }
-  .pdemo__bar { padding: 14px 16px 6px; }
-  .pdemo__cols { flex: none; gap: 14px; padding: 10px 14px 16px; }
-  /* every line sits in the same grid cell, so the panel is as tall as the longest one and never cuts a sentence off */
-  .pdemo__panel { flex: none; display: grid; align-items: end; padding: 14px 16px; font-size: 16px; line-height: 1.35; }
-  .pdemo.is-live .pdemo__panel p { grid-area: 1 / 1; }
-  .pdemo.is-live .pdemo__panel p,
-  .pdemo.is-live .pdemo__panel p.is-shown { display: block; visibility: hidden; }
-  .pdemo.is-live .pdemo__panel p.is-current { visibility: visible; }
-  .pdemo__label { margin-top: 6px; }
+  .laptop__screen > .pdemo { aspect-ratio: 16 / 10; }
+  .pdemo__bar { padding: 7px 9px 2px; gap: 5px; font-size: 9px; }
+  .pdemo__dot { width: 6px; height: 6px; }
+  .pdemo__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; padding: 6px 9px 8px; }
+  .pdemo__panel { padding: 7px; gap: 4px; border-radius: 5px; font-size: 9.5px; line-height: 1.28; }
+  .pdemo__label { margin-top: 4px; font-size: 8px; }
 }
 
 /* ---------- Phones and small tablets: work doodles sit centred above each job ---------- */
