@@ -551,3 +551,6 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 /* Thesis card: the spiral GIF is wider than the 16:10 screen — show all of it, letterboxed on the screen's dark glass */
 .laptop__screen > picture.dance-gif { background: #000; border-radius: 3px; }
 .laptop__screen > picture.dance-gif img { aspect-ratio: 16 / 10; object-fit: contain; background: #000; }
+
+/* ---------- Something new (Palette Lens) ---------- */
+.lens { padding-block: var(--section-gap) 0; }
