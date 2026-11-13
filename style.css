@@ -556,16 +556,18 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .lens { padding-block: var(--section-gap) 0; }
 
 /* Side projects: one featured project, then a grid */
-.feature { display: flex; flex-wrap: wrap; background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--lift); color: var(--ink); text-decoration: none; margin-bottom: clamp(56px, 7vw, 88px); }
-.feature__media { flex: 3 1 560px; min-width: 0; background: #DCE6EE; aspect-ratio: 16 / 9; align-self: center; }
-/* The demo is exactly 16:9; the box never stretches to the text's height, so nothing gets cropped. */
+/* Featured project: the video runs the full width of the card, edge to edge, with the words in a row
+   underneath. The card is allowed to be wider than the page column so the demo can be big. */
+.feature { --feature-w: min(1480px, calc(100vw - 2 * var(--gutter))); display: flex; flex-direction: column; margin-inline: calc((100% - var(--feature-w)) / 2); background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: var(--lift); color: var(--ink); text-decoration: none; margin-bottom: clamp(56px, 7vw, 88px); }
+.feature__media { width: 100%; aspect-ratio: 16 / 9; background: #1A1512; }
 .feature__media video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.feature__text { flex: 1 1 340px; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; }
+.feature__text { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px clamp(24px, 4vw, 64px); padding: clamp(24px, 3vw, 40px) clamp(24px, 3.5vw, 48px) clamp(26px, 3vw, 40px); }
+.feature__head { flex: 0 1 auto; display: flex; flex-direction: column; gap: 8px; }
 .feature__note { margin: 0; color: var(--pen); font-size: 30px; line-height: 1; transform: rotate(-2deg); transform-origin: left; }
-.feature__title { margin: 0; font-size: clamp(30px, 3vw, 40px); line-height: 1.1; font-weight: 600; }
-.feature__text .meta { margin: 0; }
-.feature__text p:not(.meta):not(.feature__note) { margin: 0; color: var(--ink-soft); }
-.feature__cta { margin-top: auto; padding-top: 12px; font-weight: 600; color: var(--pen); }
+.feature__title { margin: 0; font-size: clamp(36px, 4vw, 56px); line-height: 1.02; font-weight: 600; }
+.feature__head .meta { margin: 0; }
+.feature__desc { flex: 1 1 420px; margin: 0; max-width: 40em; color: var(--ink-soft); }
+.feature__cta { flex: none; margin-left: auto; font-weight: 600; font-size: clamp(18px, 1.6vw, 22px); color: var(--pen); white-space: nowrap; }
 .feature:hover .feature__cta { color: var(--pen-dark); text-decoration: underline; }
 .made { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 480px), 1fr)); gap: clamp(36px, 4vw, 48px) clamp(20px, 2.4vw, 32px); }
 .made__card { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
@@ -584,9 +586,13 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 .made__meta { margin: 0; font-size: 14px; color: var(--ink-soft); }
 .made__card > p:not(.made__meta):not(.made__links) { margin: 4px 0 0; }
 .made__links { margin: 6px 0 0; display: flex; gap: 16px; flex-wrap: wrap; font-weight: 500; }
-@media (max-width: 640px) { .feature__media { flex-basis: 100%; } }
+@media (max-width: 640px) { .feature { border-radius: 18px; } .feature__cta { margin-left: 0; } }
 .made__media--pdemo { background: #15161B; align-items: stretch; }
 .made__media--pdemo .pdemo { width: 100%; height: 100%; font-size: clamp(13px, 1.25vw, 17px); line-height: 1.35; }
 .made__title { font-size: 22px; }
 .made__media { text-decoration: none; color: inherit; }
 .made__media--pdemo * { text-decoration: none; }
+
+/* The Muse picture: Jolly on the phone, as a small rounded card in the doodle's spot. */
+.job__pic { width: 176px; height: auto; border-radius: 22px; background: #EEF2F8; box-shadow: 0 1px 2px rgba(20,25,40,.06), 0 10px 28px rgba(20,25,40,.10); }
+@media (max-width: 900px) { .job__pic { width: 150px; height: auto; } }
