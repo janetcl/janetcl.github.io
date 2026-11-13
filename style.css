@@ -272,154 +272,17 @@ mark { background: var(--peach); color: inherit; padding: 0 4px; }
   .tape { width: 88px; height: 28px; }
 }
 
-/* ---------- Loader (hook) ----------
-   Hidden unless <html> has .is-loading (set by the inline head script).
-   The character SVG and its keyframes get dropped into #loader. */
-.loader {
-  position: fixed; inset: 0; z-index: 100;
-  display: none; place-items: center;
-  background: var(--paper);
-  opacity: 1;
-  transition: opacity 400ms ease-out, visibility 0s linear 400ms;
-}
-.is-loading .loader { display: grid; animation: loader-failsafe 0s linear 5.5s forwards; }
-.loader:empty { display: none !important; }
-.loader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
-/* If site.js never runs, the overlay still gets out of the way. */
-@keyframes loader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-@media (prefers-reduced-motion: reduce) { .loader { display: none !important; } }
-
-/* ---------- Loader: mini-Janet shoots hoops (one 3s loop on first visit) ---------- */
-.loader{color:var(--pen)}
-.loader__inner{display:flex;flex-direction:column;align-items:center;gap:12px;width:min(728px,92vw)}
-.loader__scene{width:100%;height:auto;overflow:visible}
-.jl svg *{transform-box:view-box}
-.jl{--ease:cubic-bezier(.45,.05,.35,1)}
-.c-air{animation:c-air 3s linear infinite}
-.c-turn{animation:c-turn 3s var(--ease) infinite}
-.c-legs{transform-origin:0 0;animation:c-legs 3s var(--ease) infinite}
-.c-upper{animation:c-upper 3s var(--ease) infinite}
-.c-thighL{transform-origin:-8px -62px;animation:c-thighL 3s var(--ease) infinite}
-.c-shinL{transform-origin:-8px -32px;animation:c-shinL 3s var(--ease) infinite}
-.c-thighR{transform-origin:8px -62px;animation:c-thighR 3s var(--ease) infinite}
-.c-shinR{transform-origin:8px -32px;animation:c-shinR 3s var(--ease) infinite}
-.c-armL{transform-origin:-15px -100px;animation:c-armL 3s var(--ease) infinite}
-.c-foreL{transform-origin:-15px -79px;animation:c-foreL 3s var(--ease) infinite}
-.c-armR{transform-origin:15px -100px;animation:c-armR 3s var(--ease) infinite}
-.c-foreR{transform-origin:15px -79px;animation:c-foreR 3s var(--ease) infinite}
-.c-head{transform-origin:0 -108px;animation:c-head 3s var(--ease) infinite}
-.c-sway{transform-origin:0 -160px;animation:c-sway 3s var(--ease) infinite}
-.c-blink{transform-origin:0 -129px;animation:c-blink 3s linear infinite}
-.c-grin{animation:c-grin 3s linear infinite}
-.c-smile{animation:c-smile 3s linear infinite}
-.c-shadow{transform-origin:150px 292px;animation:c-shadow 3s var(--ease) infinite}
-.b-x{animation:b-x 3s linear infinite}
-.b-y{animation:b-y 3s linear infinite}
-.b-o{animation:b-o 3s linear infinite}
-.b-s{transform-origin:0 0;animation:b-s .75s linear infinite}
-.h-net{transform-origin:410px 132px;animation:h-net 3s ease-out infinite}
-.h-swish{animation:h-swish 3s ease-out infinite}
-.jl-cc{grid-area:1/1;animation:jl-cc 6s steps(1,end) infinite}
-
-@keyframes c-air{
-0%,47%{transform:translateY(0);animation-timing-function:cubic-bezier(.2,.7,.4,1)}
-55%{transform:translateY(-48px);animation-timing-function:cubic-bezier(.5,0,.8,.4)}
-65%{transform:translateY(0)}
-76%{transform:translateY(0);animation-timing-function:cubic-bezier(.2,.7,.4,1)}
-81%{transform:translateY(-22px);animation-timing-function:cubic-bezier(.5,0,.8,.4)}
-86%,100%{transform:translateY(0)}}
-@keyframes c-turn{0%,78%{transform:scaleX(1)}82%{transform:scaleX(-1)}86%,100%{transform:scaleX(1)}}
-@keyframes c-legs{
-0%,10%,20%,30%,40%{transform:scaleY(1)}
-5%,15%,25%,35%{transform:scaleY(.96)}
-47%{transform:scaleY(.85)}
-53%{transform:scaleY(1.04)}
-58%{transform:scaleY(.9)}
-65%{transform:scaleY(.84)}
-70%,76%{transform:scaleY(1)}
-79%{transform:scaleY(.9)}
-83%{transform:scaleY(.92)}
-86%{transform:scaleY(.86)}
-90%,100%{transform:scaleY(1)}}
-@keyframes c-upper{
-0%,10%,20%,30%,40%{transform:translateY(0) rotate(0)}
-5%,15%,25%,35%{transform:translateY(3px) rotate(2deg)}
-47%{transform:translateY(9px) rotate(0)}
-53%{transform:translateY(-2px)}
-58%{transform:translateY(6px)}
-65%{transform:translateY(10px)}
-70%,76%{transform:translateY(0)}
-79%{transform:translateY(6px)}
-83%{transform:translateY(5px)}
-86%{transform:translateY(9px)}
-90%,100%{transform:translateY(0)}}
-@keyframes c-thighL{0%,40%{transform:rotate(0)}5%,15%,25%,35%{transform:rotate(4deg)}47%{transform:rotate(10deg)}55%{transform:rotate(-3deg)}60%{transform:rotate(16deg)}65%{transform:rotate(8deg)}70%,76%{transform:rotate(0)}82%{transform:rotate(18deg)}86%{transform:rotate(8deg)}90%,100%{transform:rotate(0)}}
-@keyframes c-shinL{0%,40%{transform:rotate(0)}5%,15%,25%,35%{transform:rotate(-6deg)}47%{transform:rotate(-16deg)}55%{transform:rotate(0)}60%{transform:rotate(-34deg)}65%{transform:rotate(-14deg)}70%,76%{transform:rotate(0)}82%{transform:rotate(-38deg)}86%{transform:rotate(-12deg)}90%,100%{transform:rotate(0)}}
-@keyframes c-thighR{0%,40%{transform:rotate(0)}5%,15%,25%,35%{transform:rotate(-4deg)}47%{transform:rotate(-10deg)}55%{transform:rotate(3deg)}60%{transform:rotate(-16deg)}65%{transform:rotate(-8deg)}70%,76%{transform:rotate(0)}82%{transform:rotate(-18deg)}86%{transform:rotate(-8deg)}90%,100%{transform:rotate(0)}}
-@keyframes c-shinR{0%,40%{transform:rotate(0)}5%,15%,25%,35%{transform:rotate(6deg)}47%{transform:rotate(16deg)}55%{transform:rotate(0)}60%{transform:rotate(34deg)}65%{transform:rotate(14deg)}70%,76%{transform:rotate(0)}82%{transform:rotate(38deg)}86%{transform:rotate(12deg)}90%,100%{transform:rotate(0)}}
-@keyframes c-armR{
-0%,10%,20%,30%,40%{transform:rotate(-32deg)}
-5%,15%,25%,35%{transform:rotate(-18deg)}
-47%{transform:rotate(-140deg)}55%{transform:rotate(-172deg)}64%{transform:rotate(-160deg)}71%{transform:rotate(-120deg)}
-77%{transform:rotate(-14deg)}81%{transform:rotate(-150deg)}86%{transform:rotate(-138deg)}93%{transform:rotate(-16deg)}100%{transform:rotate(-32deg)}}
-@keyframes c-foreR{
-0%,10%,20%,30%,40%{transform:rotate(30deg)}
-5%,15%,25%,35%{transform:rotate(4deg)}
-47%{transform:rotate(20deg)}55%{transform:rotate(4deg)}64%{transform:rotate(40deg)}71%{transform:rotate(30deg)}
-77%{transform:rotate(14deg)}81%{transform:rotate(46deg)}86%{transform:rotate(56deg)}93%{transform:rotate(12deg)}100%{transform:rotate(30deg)}}
-@keyframes c-armL{
-0%,40%{transform:rotate(16deg)}
-47%{transform:rotate(60deg)}55%{transform:rotate(150deg)}64%{transform:rotate(118deg)}71%{transform:rotate(40deg)}
-77%{transform:rotate(10deg)}81%{transform:rotate(150deg)}86%{transform:rotate(138deg)}93%{transform:rotate(10deg)}100%{transform:rotate(16deg)}}
-@keyframes c-foreL{
-0%,40%{transform:rotate(-18deg)}
-47%{transform:rotate(-110deg)}55%{transform:rotate(-20deg)}64%{transform:rotate(-24deg)}71%{transform:rotate(-14deg)}
-77%{transform:rotate(-10deg)}81%{transform:rotate(-46deg)}86%{transform:rotate(-56deg)}93%{transform:rotate(-10deg)}100%{transform:rotate(-18deg)}}
-@keyframes c-head{0%,5%,15%,25%,35%{transform:rotate(0)}10%,30%{transform:rotate(-3deg)}20%{transform:rotate(3deg)}40%{transform:rotate(0)}48%{transform:rotate(-4deg)}58%{transform:rotate(7deg)}72%{transform:rotate(9deg)}79%{transform:rotate(-7deg)}86%{transform:rotate(6deg)}93%,100%{transform:rotate(0)}}
-@keyframes c-sway{0%,10%,20%,30%,40%{transform:rotate(0)}5%,25%{transform:rotate(1.5deg)}15%,35%{transform:rotate(-1.5deg)}47%{transform:translateY(-2px)}55%{transform:translateY(6px) rotate(-2deg)}61%{transform:translateY(-5px) rotate(2deg)}66%{transform:translateY(2px)}70%,77%{transform:translateY(0)}81%{transform:translateY(5px) rotate(4deg)}85%{transform:translateY(-3px) rotate(-3deg)}89%{transform:translateY(1px) rotate(1deg)}93%,100%{transform:translateY(0) rotate(0)}}
-@keyframes c-blink{0%,30%,33%,88%,91%,100%{transform:scaleY(1)}31.5%,89.5%{transform:scaleY(.08)}}
-@keyframes c-grin{0%,74%{opacity:0}76%,92%{opacity:1}94%,100%{opacity:0}}
-@keyframes c-smile{0%,74%{opacity:1}76%,92%{opacity:0}94%,100%{opacity:1}}
-@keyframes c-shadow{0%,47%{transform:scale(1);opacity:.18}55%{transform:scale(.55);opacity:.07}65%,76%{transform:scale(1);opacity:.18}81%{transform:scale(.75);opacity:.1}86%,100%{transform:scale(1);opacity:.18}}
-
-@keyframes b-x{
-0%,40%{transform:translateX(181px)}
-47%{transform:translateX(186px)}
-55%{transform:translateX(176px)}
-72%,76%{transform:translateX(410px)}
-82%{transform:translateX(414px)}
-87%{transform:translateX(420px)}
-91%{transform:translateX(426px)}
-94%{transform:translateX(440px)}
-94.5%,100%{transform:translateX(181px)}}
-@keyframes b-y{
-0%{transform:translateY(240px);animation-timing-function:cubic-bezier(.5,0,.9,.6)}
-5%{transform:translateY(279px);animation-timing-function:cubic-bezier(.1,.4,.5,1)}
-10%{transform:translateY(240px);animation-timing-function:cubic-bezier(.5,0,.9,.6)}
-15%{transform:translateY(279px);animation-timing-function:cubic-bezier(.1,.4,.5,1)}
-20%{transform:translateY(240px);animation-timing-function:cubic-bezier(.5,0,.9,.6)}
-25%{transform:translateY(279px);animation-timing-function:cubic-bezier(.1,.4,.5,1)}
-30%{transform:translateY(240px);animation-timing-function:cubic-bezier(.5,0,.9,.6)}
-35%{transform:translateY(279px);animation-timing-function:cubic-bezier(.1,.4,.5,1)}
-40%{transform:translateY(240px);animation-timing-function:ease-in-out}
-47%{transform:translateY(178px);animation-timing-function:ease-out}
-55%{transform:translateY(50px);animation-timing-function:cubic-bezier(.2,.6,.4,1)}
-63%{transform:translateY(0px);animation-timing-function:cubic-bezier(.6,0,.8,.4)}
-72%{transform:translateY(112px);animation-timing-function:linear}
-76%{transform:translateY(152px);animation-timing-function:ease-in}
-82%{transform:translateY(279px);animation-timing-function:ease-out}
-87%{transform:translateY(248px);animation-timing-function:ease-in}
-91%,94%{transform:translateY(279px)}
-94.5%,100%{transform:translateY(240px)}}
-@keyframes b-o{0%,91%{opacity:1}94%,96%{opacity:0}100%{opacity:1}}
-@keyframes b-s{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes h-net{0%,72%{transform:scale(1,1)}76%{transform:scale(.86,1.34)}80%{transform:scale(1.06,.9)}84%,100%{transform:scale(1,1)}}
-@keyframes h-swish{0%,74%{opacity:0;transform:translateY(10px)}78%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(-6px)}95%,100%{opacity:0;transform:translateY(-6px)}}
-@keyframes jl-cc{0%{opacity:1}33.333%,100%{opacity:0}}
-@media (prefers-reduced-motion: reduce){
-.jl *{animation:none!important}
-.jl-cc+.jl-cc,.h-swish,.c-grin{opacity:0}
-}
+/* ---------- Loading: never in the way ----------
+   No overlay. If the page is slow, a thin line in the accent colour runs across the very top and
+   completes when everything has arrived. Photos that arrive late fade in instead of popping. */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 200; background: var(--pen); transform: scaleX(0); transform-origin: left; opacity: 0; pointer-events: none; }
+.is-slow .progress { opacity: 1; animation: progress-crawl 6s cubic-bezier(.08, .7, .2, 1) forwards; }
+.is-slow.is-loaded .progress { animation: progress-done .45s ease-out forwards; }
+@keyframes progress-crawl { from { transform: scaleX(0); } to { transform: scaleX(.9); } }
+@keyframes progress-done { 0% { transform: scaleX(.9); opacity: 1; } 60% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+img.fade-in { opacity: 0; transition: opacity .5s ease-out; }
+img.fade-in.is-in { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .is-slow .progress { animation: none; transform: scaleX(.6); } img.fade-in { opacity: 1; transition: none; } }
 
 /* ---------- Colour themes (picked in the top bar, remembered per visitor) ---------- */
 :root[data-theme="cherry"] {

@@ -1,28 +1,15 @@
-// Hides the loader as soon as the page has loaded. It only ever appeared if loading was slow.
+// Loading: finish the top line when everything is in, and let late photos fade in.
 (function () {
   var root = document.documentElement;
-  var loader = document.getElementById('loader');
-  var MIN_VISIBLE_MS = 500; // once shown, stay long enough not to flicker
-  var finished = false;
-
-  function finish() {
-    if (finished) return;
-    finished = true;
-    clearTimeout(window.__jlLoaderTimer);
-    if (!root.classList.contains('is-loading')) return;
-    var shownFor = Date.now() - (window.__jlLoaderShownAt || 0);
-    setTimeout(function () {
-      if (loader) loader.classList.add('is-done');
-      setTimeout(function () { root.classList.remove('is-loading'); }, 450);
-    }, Math.max(0, MIN_VISIBLE_MS - shownFor));
-  }
-
-  if (document.readyState === 'complete') finish();
-  else window.addEventListener('load', finish);
-
-  // A tap or key press skips it.
-  if (loader) loader.addEventListener('click', function () { finished = false; window.__jlLoaderShownAt = 0; finish(); });
-  window.addEventListener('keydown', function () { window.__jlLoaderShownAt = 0; finish(); }, { once: true });
+  function done() { clearTimeout(window.__jlSlow); root.classList.add('is-loaded'); }
+  if (document.readyState === 'complete') done(); else window.addEventListener('load', done);
+  Array.prototype.forEach.call(document.querySelectorAll('main img'), function (img) {
+    if (img.complete) return;
+    img.classList.add('fade-in');
+    var show = function () { img.classList.add('is-in'); };
+    img.addEventListener('load', show, { once: true });
+    img.addEventListener('error', show, { once: true });
+  });
 })();
 
 // Project media: Passage lines arrive in real time; the alabaster.org clip plays while on screen.
