@@ -557,9 +557,10 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 
 /* Side projects: one featured project, then a grid */
 .feature { display: flex; flex-wrap: wrap; background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--lift); color: var(--ink); text-decoration: none; margin-bottom: clamp(56px, 7vw, 88px); }
-.feature__media { flex: 999 1 560px; min-width: 0; background: #DCE6EE; aspect-ratio: 16 / 9; }
+.feature__media { flex: 3 1 560px; min-width: 0; background: #DCE6EE; aspect-ratio: 16 / 9; align-self: center; }
+/* The demo is exactly 16:9; the box never stretches to the text's height, so nothing gets cropped. */
 .feature__media video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.feature__text { flex: 1 1 320px; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; }
+.feature__text { flex: 1 1 340px; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; }
 .feature__note { margin: 0; color: var(--pen); font-size: 30px; line-height: 1; transform: rotate(-2deg); transform-origin: left; }
 .feature__title { margin: 0; font-size: clamp(30px, 3vw, 40px); line-height: 1.1; font-weight: 600; }
 .feature__text .meta { margin: 0; }
