@@ -465,6 +465,7 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 /* The Muse picture: Jolly, cut out, standing in the same 150px slot as the other doodles so the
    text columns line up. A soft shadow from his outline keeps him on the page instead of pasted on. */
 .job__pic { display: block; width: 150px; padding-top: 6px; background: radial-gradient(circle at 50% 58%, color-mix(in srgb, var(--pen) 9%, var(--paper)) 0 66%, transparent 67%); border-radius: 50%; }
-.job__pic img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 12px rgba(60, 42, 20, .14)) drop-shadow(0 2px 2px rgba(60, 42, 20, .08)); }
+/* The cutout's right side is phone cord, so nudge the image right until Jolly's body sits on the same centre line as the doodles below. */
+.job__pic img { display: block; width: 100%; height: auto; transform: translateX(12%); filter: drop-shadow(0 10px 12px rgba(60, 42, 20, .14)) drop-shadow(0 2px 2px rgba(60, 42, 20, .08)); }
 @media (max-width: 900px) { .job__pic { width: 120px; } }
 .loves small { display: block; font-size: .62em; line-height: 1.1; opacity: .85; }
