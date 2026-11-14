@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="style.css?v=41">
 <script>
   try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
@@ -83,12 +83,12 @@
 
   <div class="work__list">
     <article class="job">
-      <picture class="doodle job__pic"><source srcset="img/jolly.webp?v=1" type="image/webp"><img src="img/jolly.png?v=1" width="344" height="321" alt="Jolly, a fluffy cream-colored character, chatting on a blue phone with a curly cord" loading="lazy" decoding="async"></picture>
+      <div class="doodle job__pic"><div class="jolly"><picture><source srcset="img/jolly.webp?v=1" type="image/webp"><img src="img/jolly.png?v=1" width="344" height="321" alt="Jolly, a fluffy cream-colored character, chatting on a blue phone with a curly cord" loading="lazy" decoding="async"></picture><span class="jolly__lid jolly__lid--l" aria-hidden="true"></span><span class="jolly__lid jolly__lid--r" aria-hidden="true"></span><svg class="jolly__voice" viewBox="0 0 40 60" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M6 22c4 4 4 12 0 16"/><path d="M15 15c8 8 8 22 0 30"/><path d="M24 8c12 12 12 32 0 44"/></svg></div></div>
       <div class="job__body">
         <h3 class="item-title">Muse voice &amp; avatar calls</h3>
         <p class="meta">Meta Superintelligence Labs · 2024 – now</p>
         <p class="measure">I work on the Android side of Muse, Meta's AI you can talk to in real time, by voice or face to face with its avatar. It's what Mark demoed live with Agrippa at Connect 2026. Before that, our team built voice and avatar calling for Facebook, Instagram and Messenger, keeping audio, video and captions in sync.</p>
-        <p class="job__links"><a href="https://x.com/HarperSCarroll/status/2102898244582031420" target="_blank" rel="noopener">Watch the Connect demo ↗</a><a href="https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/" target="_blank" rel="noopener">TechCrunch on Muse at Connect ↗</a></p>
+        <p class="job__links"><a href="https://x.com/HarperSCarroll/status/2102898244582031420" target="_blank" rel="noopener" data-connect>Photos from the Connect demo</a><a href="https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/" target="_blank" rel="noopener">TechCrunch on Muse at Connect ↗</a></p>
       </div>
       <p class="margin-note hand tilt-l">first demo at Connect → launch</p>
     </article>
@@ -243,6 +243,11 @@
   </ul>
 </section>
 
+<dialog class="clip" id="connect-clip" aria-label="Muse demo at Connect 2026">
+  <div class="clip__head"><p class="hand">live at Connect</p><button class="clip__close" type="button" aria-label="Close">×</button></div>
+  <div class="clip__body"><p class="clip__wait">Loading…</p></div>
+  <p class="clip__foot"><a href="https://x.com/HarperSCarroll/status/2102898244582031420" target="_blank" rel="noopener">Open on X ↗</a></p>
+</dialog>
 </main>
 
 <footer class="site-footer">
@@ -260,6 +265,6 @@
 
 </div>
 
-<script src="site.js?v=10" defer></script>
+<script src="site.js?v=11" defer></script>
 </body>
 </html>

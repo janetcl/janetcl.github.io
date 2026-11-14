@@ -128,3 +128,48 @@
     new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }, { threshold: 0.3 }).observe(track);
   } else start();
 })();
+
+// Jolly idles (breathes, blinks, phone chatter) only while on screen; the Connect demo opens in a popup.
+(function () {
+  var pic = document.querySelector('.job__pic');
+  if (pic) {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { pic.classList.toggle('is-awake', e[0].isIntersecting); }).observe(pic);
+    } else pic.classList.add('is-awake');
+  }
+
+  var link = document.querySelector('[data-connect]');
+  var dlg = document.getElementById('connect-clip');
+  if (!link || !dlg || typeof dlg.showModal !== 'function') return;
+  var body = dlg.querySelector('.clip__body');
+  var loaded = false;
+  link.addEventListener('click', function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    dlg.showModal();
+    if (loaded) return;
+    loaded = true;
+    var q = document.createElement('blockquote');
+    q.className = 'twitter-tweet';
+    q.setAttribute('data-media-max-width', '520');
+    q.setAttribute('data-dnt', 'true');
+    q.setAttribute('data-conversation', 'none');
+    q.innerHTML = '<a href="' + link.href + '"></a>';
+    body.appendChild(q);
+    var s = document.createElement('script');
+    s.src = 'https://platform.twitter.com/widgets.js';
+    s.async = true;
+    s.onload = function () {
+      if (window.twttr && twttr.widgets) twttr.widgets.load(body).then(function () { var w = body.querySelector('.clip__wait'); if (w) w.remove(); });
+    };
+    s.onerror = function () { body.querySelector('.clip__wait').textContent = 'The post could not load here. Open it on X below.'; };
+    document.head.appendChild(s);
+  });
+  dlg.querySelector('.clip__close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', function () {
+    // Stop playback by re-rendering the embed next time.
+    var f = body.querySelector('iframe');
+    if (f) { body.innerHTML = '<p class="clip__wait">Loading…</p>'; loaded = false; }
+  });
+})();

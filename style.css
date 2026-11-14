@@ -466,6 +466,48 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
    text columns line up. A soft shadow from his outline keeps him on the page instead of pasted on. */
 .job__pic { display: block; width: 150px; padding-top: 6px; background: radial-gradient(circle at 50% 58%, color-mix(in srgb, var(--pen) 9%, var(--paper)) 0 66%, transparent 67%); border-radius: 50%; }
 /* The cutout's right side is phone cord, so nudge the image right until Jolly's body sits on the same centre line as the doodles below. */
-.job__pic img { display: block; width: 100%; height: auto; transform: translateX(12%); filter: drop-shadow(0 10px 12px rgba(60, 42, 20, .14)) drop-shadow(0 2px 2px rgba(60, 42, 20, .08)); }
+.jolly { position: relative; transform: translateX(12%); transform-origin: 44% 100%; }
+.job__pic img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 12px rgba(60, 42, 20, .14)) drop-shadow(0 2px 2px rgba(60, 42, 20, .08)); }
+/* Idle: Jolly breathes, blinks now and then, and little sound waves come off the phone. */
+.jolly__lid { position: absolute; top: 21.2%; width: 4.6%; height: 5.2%; border-radius: 50%; background: #EFD3B5; opacity: 0; transform: scaleY(0); transform-origin: 50% 0; pointer-events: none; }
+.jolly__lid::after { content: ""; position: absolute; left: 4%; right: 4%; top: 35%; height: 45%; border-bottom: 1.6px solid #2A1F1A; border-radius: 0 0 50% 50%; }
+.jolly__lid--l { left: 29.7%; }
+.jolly__lid--r { left: 47.3%; }
+.jolly__voice { position: absolute; left: 77%; top: 1%; width: 13%; color: var(--pen); overflow: visible; pointer-events: none; }
+.jolly__voice path { opacity: 0; }
+.is-awake .jolly { animation: jolly-breathe 3.6s ease-in-out infinite; }
+.is-awake .jolly__lid { animation: jolly-blink 5.8s 1.2s infinite; }
+.is-awake .jolly__voice path { animation: jolly-voice 2.4s ease-out infinite; }
+.is-awake .jolly__voice path:nth-child(2) { animation-delay: .18s; }
+.is-awake .jolly__voice path:nth-child(3) { animation-delay: .36s; }
+.job__pic:hover .jolly { animation-duration: 1.4s; }
+@keyframes jolly-breathe {
+  0%, 100% { transform: translateX(12%) translateY(0) rotate(0) scale(1, 1); }
+  50% { transform: translateX(12%) translateY(-2px) rotate(-1.2deg) scale(1.012, .992); }
+}
+@keyframes jolly-blink {
+  0%, 93%, 100% { opacity: 0; transform: scaleY(0); }
+  94.5%, 96% { opacity: 1; transform: scaleY(1); }
+}
+@keyframes jolly-voice {
+  0% { opacity: 0; transform: translateX(-3px); }
+  20% { opacity: .85; }
+  60%, 100% { opacity: 0; transform: translateX(3px); }
+}
+@media (prefers-reduced-motion: reduce) { .is-awake .jolly, .is-awake .jolly__lid, .is-awake .jolly__voice path { animation: none; } }
+
+/* The Connect demo plays in a small popup instead of sending people off the site. */
+.clip { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 14px 18px 16px; border: 0; border-radius: 20px; background: var(--paper); color: inherit; box-shadow: 0 30px 80px rgba(20, 20, 40, .3); overflow: auto; }
+.clip::backdrop { background: rgba(18, 20, 34, .55); backdrop-filter: blur(3px); }
+.clip[open] { animation: clip-in .28s cubic-bezier(.2, .8, .2, 1); }
+@keyframes clip-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+.clip__head { display: flex; align-items: center; justify-content: space-between; }
+.clip__head .hand { margin: 0; font-size: 30px; color: var(--pen); }
+.clip__close { width: 44px; height: 44px; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--pen) 9%, var(--paper)); color: var(--pen); font-size: 26px; line-height: 1; cursor: pointer; }
+.clip__body { min-height: 320px; display: grid; place-items: center; }
+.clip__body .twitter-tweet { margin: 0 auto !important; }
+.clip__wait { opacity: .6; }
+.clip__foot { margin: 8px 0 0; text-align: center; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .clip[open] { animation: none; } }
 @media (max-width: 900px) { .job__pic { width: 120px; } }
 .loves small { display: block; font-size: .62em; line-height: 1.1; opacity: .85; }
