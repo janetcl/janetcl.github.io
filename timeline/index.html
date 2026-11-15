@@ -17,110 +17,98 @@
   try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
 <style>
-  /* Timeline: one year per band, newest first. The year sits in a left rail (sticky on desktop); a pinned row of year chips jumps between them. */
   .tl-intro { padding-top: clamp(24px, 4vw, 56px); padding-bottom: clamp(28px, 4vw, 48px); display: grid; gap: 14px; }
   .tl-intro h1.hand { margin: 0; font-weight: 400; font-size: clamp(64px, 9vw, 120px); line-height: .85; color: var(--pen); }
   .tl-intro mark { white-space: nowrap; }
   .tl-intro p { font-size: clamp(19px, 1.8vw, 24px); line-height: 1.35; max-width: 34em; font-weight: 500; letter-spacing: -0.01em; }
-
   .years { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper, #FAFAF7) 94%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
   .years__in { display: flex; gap: 8px; overflow-x: auto; padding-block: 12px; scrollbar-width: none; }
   .years__in::-webkit-scrollbar { display: none; }
   .years a { flex: 0 0 auto; text-decoration: none; font-weight: 700; font-size: 15px; padding: 8px 14px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
   .years a.on { background: var(--ink); color: var(--paper, #FAFAF7); }
-
-  .yr { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 24px clamp(24px, 4vw, 56px); border-top: 3px solid var(--ink); padding-block: 24px clamp(48px, 6vw, 80px); scroll-margin-top: 64px; }
-  .yr__num { margin: 0; font-size: clamp(56px, 7vw, 104px); line-height: .9; letter-spacing: -0.05em; font-weight: 700; font-variant-numeric: tabular-nums; position: sticky; top: 84px; align-self: start; }
-  .yr.quiet { border-top-color: color-mix(in srgb, var(--ink) 25%, transparent); }
-  .yr.quiet .yr__num { color: color-mix(in srgb, var(--ink) 35%, transparent); }
-  .yr__body { display: grid; gap: clamp(32px, 4vw, 48px); min-width: 0; }
-
-  .ent { display: grid; gap: 8px; min-width: 0; }
-  .ent--wide { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 8px clamp(20px, 3vw, 36px); align-items: center; }
-  .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 3vw, 40px); }
-  .media { aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; background: #E9E7E0; box-shadow: var(--lift); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 6%; }
-  .media video, .media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .media--mist { background: var(--wash); }
-  .media--jolly img { width: auto; height: 82%; object-fit: contain; }
-  .media--doodle svg { width: 34%; height: auto; color: var(--pen); }
-  .media--app img { width: auto; height: 86%; aspect-ratio: 9 / 19.5; object-fit: cover; object-position: top; border-radius: 12% / 5.5%; border: 3px solid #1B1B1B; box-shadow: 0 6px 16px -8px rgba(0,0,0,.4); }
-  .tag { justify-self: start; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; }
-  .tag--meta { background: #E7EAF6; color: var(--pen); }
-  .tag--side { background: var(--peach); color: #7A2E0A; }
-  .tag--church { background: #E5F0E1; color: #2F6B2F; }
-  .tag--college { background: #EFE7F7; color: #5B3A8C; }
-  .ent h3 { margin: 0; font-size: clamp(22px, 2vw, 28px); letter-spacing: -0.02em; line-height: 1.1; }
-  .ent .meta { margin: 0; }
-  .ent p { margin: 0; max-width: 40em; }
-  .ent .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-weight: 700; margin-top: 4px; }
-
-  .rows { display: grid; gap: 18px; }
-  .row { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 18px; align-items: center; }
-  .row .media { aspect-ratio: 1; margin: 0; border-radius: 12px; }
-  .row h3 { font-size: 21px; }
-
-  .note { font: 400 clamp(28px, 2.6vw, 36px)/1.05 "Reenie Beanie", cursive; color: var(--pen); -webkit-text-stroke: .45px currentColor; }
-
-  .tl-end { padding-block: 8px 72px; }
-  .tl-end a { font-weight: 700; }
-
-  @media (max-width: 760px) {
-    .yr { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 18px; }
-    .yr__num { position: static; font-size: 64px; }
-    .ent--wide, .pair { grid-template-columns: minmax(0, 1fr); }
-    .row { grid-template-columns: 96px minmax(0, 1fr); gap: 14px; }
-    .row h3 { font-size: 19px; }
-    .media--doodle { aspect-ratio: 5 / 2; }
-    .media--doodle svg { width: auto; height: 70%; }
-  }
-
-  /* lanes: At Meta on the left, After hours on the right */
   .tl-intro { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); align-items: center; column-gap: clamp(32px, 6vw, 96px); }
   .tl-intro__text { display: grid; gap: 14px; min-width: 0; }
   .tl-photo { margin: 0; display: grid; gap: 10px; justify-items: center; }
   .tl-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border-radius: 999px 999px 14px 14px; }
   .tl-photo figcaption { font-size: 30px; line-height: 1; text-align: center; color: var(--pen); -webkit-text-stroke: .45px currentColor; }
-  .lanes-head { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(20px, 3vw, 40px); padding-block: 20px 10px; font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
-  .lanes-head span:nth-child(2) { color: var(--pen); } .lanes-head span:nth-child(3) { color: #B4471A; }
-  .yr { grid-template-columns: minmax(0, 170px) minmax(0, 1fr) minmax(0, 1.25fr); gap: 20px clamp(20px, 3vw, 40px); }
-  .lane { display: grid; gap: clamp(28px, 3vw, 40px); align-content: start; min-width: 0; }
-  .lane--work { padding-right: clamp(20px, 3vw, 40px); border-right: 1px dashed color-mix(in srgb, var(--ink) 20%, transparent); }
-  .lane--work.is-empty { min-height: 1px; }
-  .lane__label { display: none; }
-  .lane .ent { gap: 8px; }
-  .lane .note { margin: 0; }
+    .tl-intro { grid-template-columns: minmax(0, 1fr); }
+    .tl-photo { max-width: 200px; justify-self: center; }
+    .tl-photo figcaption { font-size: 26px; }
+  .tl-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); align-items: center; column-gap: clamp(32px, 6vw, 96px); }
+
+  /* every year is one row the same height; its cards scroll sideways */
+  .tl { padding-block: 8px 72px; }
+  .yr { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 0 28px; border-top: 2px solid var(--ink); padding-block: 22px; scroll-margin-top: 64px; position: relative; }
+  .yr__head { display: grid; align-content: start; gap: 8px; }
+  .yr__num { margin: 0; font-size: clamp(44px, 5vw, 72px); line-height: .9; letter-spacing: -0.05em; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .yr__count { font-size: 13px; color: var(--ink-soft); }
+  .ve-label { justify-self: start; font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--pen); padding: 5px 9px; border-radius: 999px; }
+  .yr.ve .yr__head { border-left: 4px solid var(--pen); padding-left: 12px; margin-left: -16px; }
+
+  .strip { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 2px; padding: 2px 2px 14px; min-width: 0; scrollbar-width: thin; }
+  .strip:focus-visible { outline: 3px solid var(--pen); outline-offset: 4px; }
+  .card { flex: 1 0 300px; max-width: 520px; height: 440px; scroll-snap-align: start; display: grid; grid-template-rows: auto 1fr; background: var(--white); border-radius: 14px; box-shadow: var(--lift); overflow: hidden; border-top: 4px solid transparent; }
+  .card--work { border-top-color: var(--pen); }
+  .card--side { border-top-color: #F58426; }
+  .card .media { height: 190px; display: flex; align-items: center; justify-content: center; gap: 6%; background: #E9E7E0; overflow: hidden; }
+  .card .media video, .card .media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media--mist { background: var(--wash) !important; }
+  .media--contain img { width: auto !important; height: 84% !important; object-fit: contain !important; }
+  .media--doodle svg { width: auto; height: 70%; color: var(--pen); }
+  .media--app img { width: auto !important; height: 86% !important; aspect-ratio: 9 / 19.5; object-fit: cover; object-position: top; border-radius: 12% / 5.5%; border: 2px solid #1B1B1B; }
+  .card__body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 0; }
+  .card h3 { margin: 0; font-size: 20px; letter-spacing: -0.02em; line-height: 1.15; }
+  .card .meta { margin: 0; font-size: 13px; }
+  .card .desc { margin: 0; font-size: 15px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+  .card .links { margin: auto 0 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-weight: 700; font-size: 15px; }
+  .card--note .card__body { height: 100%; justify-content: center; }
+  .card--note { background: var(--wash); }
+  .card--note .tag { align-self: flex-start; }
+  .note { margin: 0; font: 400 34px/1.05 "Reenie Beanie", cursive; color: var(--pen); -webkit-text-stroke: .45px currentColor; }
+  .tag { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; }
+  .tag--meta { background: #E7EAF6; color: var(--pen); } .tag--side { background: var(--peach); color: #7A2E0A; } .tag--church { background: #E5F0E1; color: #2F6B2F; } .tag--college { background: #EFE7F7; color: #5B3A8C; }
+
+
+  .card--wide { flex-basis: 420px; }
+  .strip--solo .card { flex: 1 1 auto; max-width: none; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-rows: 1fr; }
+  .strip--solo .card .media { height: 100%; }
+  .strip--solo .card .card__body { padding: 24px 26px; justify-content: center; }
+  .card { position: relative; }
+  .margin { position: absolute; right: 14px; top: 160px; font: 400 26px/1 "Reenie Beanie", cursive; color: var(--pen); transform: rotate(-4deg); -webkit-text-stroke: .4px currentColor; background: var(--white); padding: 2px 8px; border-radius: 6px; }
+  .strip--solo .margin { top: 18px; }
+  .yr--slim { padding-block: 14px; }
+  .yr--slim .yr__head { grid-column: 1 / -1; grid-auto-flow: column; justify-content: start; align-items: center; gap: 20px; }
+  .yr--slim .yr__num { color: color-mix(in srgb, var(--ink) 35%, transparent); font-size: clamp(36px, 4vw, 52px); }
+  .yr__note { margin: 0; font: 400 28px/1.05 "Reenie Beanie", cursive; color: var(--pen); -webkit-text-stroke: .45px currentColor; max-width: 14em; }
+  .ve-band { position: relative; border-left: 4px solid var(--pen); padding-left: 18px; margin-left: -22px; margin-block: 8px 0; }
+  .ve-band .ve-label { display: inline-block; margin: 0 0 6px; }
+  .strip-wrap { position: relative; min-width: 0; }
+  .strip { scrollbar-width: none; padding-bottom: 6px; }
+  .strip::-webkit-scrollbar { display: none; }
+  .strip-wrap.more::after { content: ""; position: absolute; top: 0; right: 0; bottom: 6px; width: 80px; pointer-events: none; background: linear-gradient(90deg, transparent, var(--paper)); }
+  .strip__nav { display: flex; gap: 6px; }
+  .strip__nav button { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--ink); background: var(--white); font: 700 18px/1 var(--sans, sans-serif); cursor: pointer; color: var(--ink); }
+  .strip__nav button:disabled { opacity: .25; cursor: default; }
+  .key { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; padding-left: 16px; font-size: 13px; color: var(--ink-soft); white-space: nowrap; }
+  .key i { display: inline-block; width: 18px; height: 4px; border-radius: 2px; } .k-meta { background: var(--pen); } .k-side { background: #F58426; margin-left: 8px; }
+  .years__in { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
   @media (max-width: 760px) {
     .tl-intro { grid-template-columns: minmax(0, 1fr); }
     .tl-photo { max-width: 200px; justify-self: center; }
     .tl-photo figcaption { font-size: 26px; }
-    .lanes-head { display: none; }
-    .yr { grid-template-columns: minmax(0, 1fr); }
-    .lane--work { padding-right: 0; border-right: 0; }
-    .lane.is-empty { display: none; }
-    .lane__label { display: block; font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding-bottom: 6px; border-bottom: 2px solid currentColor; }
-    .lane--work .lane__label { color: var(--pen); } .lane--side .lane__label { color: #B4471A; }
-    .lane { gap: 24px; }
+    .yr { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .yr__head { grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 12px; }
+    .yr.ve .yr__head { margin-left: 0; }
+    .card, .card--wide { flex-basis: 80vw; height: 450px; }
+    .strip--solo .card { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: 190px 1fr; flex-basis: 100%; }
+    .strip--solo .card .media { height: 190px; }
+    .strip--solo .card .card__body { padding: 14px 16px 16px; justify-content: flex-start; }
+    .strip--solo .margin { top: 160px; }
+    .ve-band { margin-left: -12px; padding-left: 8px; }
+    .key { display: none; }
+    .yr--slim .yr__head { grid-auto-flow: row; gap: 4px; }
+    .strip { margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); padding-right: 16px; }
   }
-
-  /* layout: the year sits above its two columns, so each column gets half the width */
-  .yr { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px clamp(28px, 4vw, 56px); }
-  .yr__num { grid-column: 1 / -1; position: static; font-size: clamp(56px, 6vw, 88px); }
-  .lane--work { padding-right: clamp(28px, 4vw, 56px); }
-  .lane__label { display: block; font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding-bottom: 6px; border-bottom: 2px solid currentColor; }
-  .lane--work .lane__label { color: var(--pen); } .lane--side .lane__label { color: #B4471A; }
-  .lane.is-empty { border-right-color: transparent; }
-
-  @media (max-width: 760px) {
-    .yr { grid-template-columns: minmax(0, 1fr); }
-    .lane--work { padding-right: 0; border-right: 0; }
-  }
-
-  /* through-line: the Voice & Embodiment years share one blue rail down the left edge */
-  .yr.ve { position: relative; }
-  .yr.ve::before { content: ""; position: absolute; left: calc(-1 * clamp(10px, 1.6vw, 22px)); top: -3px; bottom: 0; width: 4px; background: var(--pen); border-radius: 2px; }
-  .yr.ve--start::before { top: 40px; }
-  .yr.ve--end::before { bottom: auto; height: 170px; }
-  .ve-label { grid-column: 1 / -1; justify-self: start; margin: -4px 0 4px; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--pen); padding: 6px 12px; border-radius: 999px; }
 </style>
 </head>
 <body>
@@ -145,21 +133,21 @@
 
   <nav class="years" aria-label="Jump to a year">
     <div class="years__in wrap">
-      <a href="#y2026" class="on">2026</a><a href="#y2025">2025</a><a href="#y2024">2024</a><a href="#y2023">2023</a><a href="#y2021">2021</a><a href="#y2020">2020</a><a href="#y2019">2019</a><a href="#y2008">2008</a>
+      <a href="#y2026" class="on">2026</a><a href="#y2025">2025</a><a href="#y2024">2024</a><a href="#y2023">2023</a><a href="#y2021">2021</a><a href="#y2020">2020</a><a href="#y2019">2019</a><a href="#y2008">2008</a><span class="key"><i class="k-meta"></i>at Meta <i class="k-side"></i>after hours</span>
     </div>
   </nav>
 
-  <div class="wrap">
-<section class="yr ve ve--start" id="y2026"><h2 class="yr__num">2026</h2><span class="ve-label">Voice &amp; Embodiment · 2024 – now</span><div class="lane lane--work"><span class="lane__label">At Meta</span><article class="ent"><div class="media media--mist media--jolly"><img src="/img/jolly.png?v=1" width="344" height="321" alt="Jolly, a fluffy cream-colored character, chatting on a blue phone with a curly cord" loading="lazy"></div><span class="tag tag--meta">Meta</span><h3>Muse voice &amp; embodiment</h3><p class="meta">Voice &amp; Embodiment · Meta Superintelligence Labs</p><p>I lead the Android engineering team for Muse voice and embodiment, so you can talk with Meta's AI out loud, in real time, by voice or face to face with its avatar. Mark Zuckerberg first demoed it live at Connect in September 2026, and it launched in November.</p><p class="links"><a href="https://x.com/HarperSCarroll/status/2102898244582031420" target="_blank" rel="noopener">Photos from the Connect demo ↗</a><a href="https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/" target="_blank" rel="noopener">TechCrunch ↗</a></p></article></div><div class="lane lane--side"><span class="lane__label">After hours</span><article class="ent"><a class="media" href="/cutline/" aria-label="Cutline"><video class="site-video" muted loop playsinline preload="metadata" poster="/img/cutline.jpg?v=1" width="2560" height="1440" aria-label="Cutline: plays running on 3D courts"><source src="/img/cutline.mp4?v=6" type="video/mp4"></video></a><span class="tag tag--side">Side project</span><h3>Cutline</h3><p>A basketball playbook you can watch come to life. Draw a play beat by beat and see it run on a 3D court. Quiz mode freezes the play and asks what you'd do.</p><p class="links"><a href="/cutline/">Try it ↗</a></p></article><article class="ent"><a class="media" href="/dance-studio/" aria-label="Dance Studio, revived"><video class="site-video" muted loop playsinline preload="metadata" poster="/img/dance-studio-2026.jpg" width="1200" height="750" aria-label="A nine-dancer routine plays through five formations"><source src="/img/dance-studio-2026.mp4" type="video/mp4"></video></a><span class="tag tag--side">Side project</span><h3>Dance Studio, revived</h3><p>My college thesis, rebuilt six years later: real 3D dancers, formations counted in eights, count sheets and one-click shapes.</p><p class="links"><a href="/dance-studio/">Try it ↗</a><a href="https://github.com/janetcl/dance-studio" target="_blank" rel="noopener">Code ↗</a></p></article><div class="rows"><article class="row"><div class="media"><img src="/img/palette-lens.jpg?v=4" alt="Palette Lens dimming dresses that don't suit a color season" loading="lazy"></div><div class="ent"><span class="tag tag--side">Side project</span><h3>Palette Lens</h3><p>A Chrome extension that shows you which clothes suit your colors.</p><p class="links"><a href="https://chromewebstore.google.com/detail/palette-lens/bgdbebcjjhlhpncgnanidnhjimejaggb" target="_blank" rel="noopener">Get it for Chrome ↗</a></p></div></article><article class="row"><div class="media"><img src="/img/passage-console.jpg" alt="Passage showing a sermon line in English, Spanish and Chinese" loading="lazy"></div><div class="ent"><span class="tag tag--church">For my church</span><h3>Passage</h3><p>Live Spanish and Chinese subtitles for Sunday sermons, translated offline. Nothing leaves the laptop.</p><p class="links"><a href="https://github.com/alabgroup/translation" target="_blank" rel="noopener">See the code ↗</a></p></div></article><article class="row"><div class="media"><img src="/img/alabaster.jpg" alt="The alabaster.org home page" loading="lazy"></div><div class="ent"><span class="tag tag--church">For my church</span><h3>alabaster.org</h3><p>The church website, rebuilt off Squarespace. Sermons and livestream links update themselves.</p><p class="links"><a href="/alabaster-site/">See the new site ↗</a></p></div></article></div></div></section>
-<section class="yr ve" id="y2025"><h2 class="yr__num">2025</h2><div class="lane lane--work"><span class="lane__label">At Meta</span><article class="ent"><span class="tag tag--meta">Meta</span><h3>AI voice &amp; avatar calling</h3><p class="meta">Voice &amp; Embodiment</p><p>Our team built AI voice and avatar calling for Facebook, Instagram and Messenger, keeping audio, video and captions in sync, and we owned third-party character creation on AI Studio.</p></article></div><div class="lane lane--side is-empty"></div></section>
-<section class="yr quiet ve ve--end" id="y2024"><h2 class="yr__num">2024</h2><div class="lane lane--work"><span class="lane__label">At Meta</span><p class="note">joined the Voice &amp; Embodiment team at Meta Superintelligence Labs</p></div><div class="lane lane--side is-empty"></div></section>
-<section class="yr" id="y2023"><h2 class="yr__num">2023</h2><div class="lane lane--work is-empty"></div><div class="lane lane--side"><span class="lane__label">After hours</span><article class="ent"><a class="media media--mist media--app" href="https://apps.apple.com/us/app/alabaster-group/id6446515286" target="_blank" rel="noopener" aria-label="The church app on the App Store"><img src="/img/app-home.jpg" alt="The church app home screen" loading="lazy"><img src="/img/app-welcome.jpg" alt="The church app welcome screen" loading="lazy"></a><span class="tag tag--church">For my church</span><h3>The church app</h3><p>An iOS app in Swift, launched with church volunteers who helped with scope, content, engineering, and testing.</p><p class="links"><a href="https://apps.apple.com/us/app/alabaster-group/id6446515286" target="_blank" rel="noopener">Get it on the App Store ↗</a></p></article></div></section>
-<section class="yr" id="y2021"><h2 class="yr__num">2021</h2><div class="lane lane--work"><span class="lane__label">At Meta</span><article class="ent"><div class="media media--mist media--doodle"><svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Doodle of a tall video frame with a play button"><path d="M46 14c-5 0-8 3-8 8v106c0 5 3 8 8 8h58c5 0 8-3 8-8V22c0-5-3-8-8-8z"/><path d="M66 60v30l26-15z"/><path d="M52 112h46"/><path d="M52 112h20" stroke-width="6"/><circle cx="102" cy="40" r="3"/></svg></div><span class="tag tag--meta">Meta</span><h3>Reels on Facebook</h3><p class="meta">Facebook Video · 2021 – 2024</p><p>Made Reels autoplay in Feed feel smooth (lots of crash, memory and scroll fixes), which grew watch time 3.8%, then brought Reels to the Watch tab with a small team.</p></article><p class="note">so much Kotlin</p></div><div class="lane lane--side is-empty"></div></section>
-<section class="yr" id="y2020"><h2 class="yr__num">2020</h2><div class="lane lane--work"><span class="lane__label">At Meta</span><article class="ent"><div class="media media--mist media--doodle"><svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Doodle of a pair of glasses"><path d="M18 70c0-10 6-14 18-14h18c10 0 14 6 14 16 0 14-8 22-24 22-18 0-26-8-26-24z"/><path d="M82 72c0-10 4-16 14-16h18c12 0 18 4 18 14 0 16-8 24-26 24-16 0-24-8-24-22z"/><path d="M68 66c4-4 10-4 14 0"/><path d="M18 66L8 56M132 66l10-10"/></svg></div><span class="tag tag--meta">Meta</span><h3>Facebook on wearables</h3><p class="meta">Reality Labs · 2020 – 2021</p><p>My first team at Meta: Stories sharing on top secret hardware alongside five partner teams. I wrote our first end-to-end and UI tests and helped wherever we were short.</p></article></div><div class="lane lane--side"><span class="lane__label">After hours</span><article class="ent"><a class="media" href="/files/Janet_Lee_Senior_Thesis.pdf" aria-label="Read the thesis (PDF)"><img src="/img/dance-studio-spiral.jpg" alt="Dance Studio in 2020: a 12-dancer spiral on the 3D stage" loading="lazy"></a><span class="tag tag--college">College</span><h3>Dance Studio</h3><p class="meta">Princeton senior thesis</p><p>Where it started: a 3D tool for blocking dance formations to music, with curved paths so dancers don't collide.</p><p class="links"><a href="/files/Janet_Lee_Senior_Thesis.pdf">Read the thesis (PDF) ↗</a></p></article><p class="note">graduated from Princeton University in New Jersey</p></div></section>
-<section class="yr" id="y2019"><h2 class="yr__num">2019</h2><div class="lane lane--work is-empty"></div><div class="lane lane--side"><span class="lane__label">After hours</span><article class="ent"><a class="media" href="/tigermeals/" aria-label="TigerMeals screens"><video class="site-video" muted loop playsinline preload="metadata" poster="/img/tigermeals.jpg" width="1280" height="800" aria-label="TigerMeals: browsing catering packages, a restaurant page, then the cart"><source src="/img/tigermeals.mp4" type="video/mp4"></video></a><span class="tag tag--college">Founder</span><h3>TigerMeals</h3><p class="meta">Princeton COS 333</p><p>A catering app for Princeton student groups that I tried to turn into a startup. I designed and built the front end.</p><p class="links"><a href="/tigermeals/">See the screens ↗</a></p></article></div></section>
-<section class="yr quiet" id="y2008"><h2 class="yr__num">2008</h2><div class="lane lane--work is-empty"></div><div class="lane lane--side"><span class="lane__label">After hours</span><p class="note">started watching Survivor (Micronesia is still the best season)</p></div></section>
-
-
+  <div class="wrap tl">
+<div class="ve-band"><span class="ve-label">Voice &amp; Embodiment · 2024 – now</span>
+<section class="yr" id="y2026"><div class="yr__head"><h2 class="yr__num">2026</h2><span class="yr__count">6 things</span><span class="strip__nav"><button type="button" class="prev" aria-label="Scroll back">←</button><button type="button" class="next" aria-label="Scroll for more">→</button></span></div><div class="strip-wrap"><div class="strip" tabindex="0" aria-label="2026, scroll sideways for more"><article class="card card--work card--wide"><div class="media media--mist media--contain"><img src="/img/jolly.png?v=1" width="344" height="321" alt="Jolly, a fluffy cream-colored character, chatting on a blue phone with a curly cord" loading="lazy"></div><div class="card__body"><span class="tag tag--meta">At Meta</span><h3>Muse voice &amp; embodiment</h3><p class="meta">Meta Superintelligence Labs</p><p class="desc">I lead the Android engineering team for Muse voice and embodiment, so you can talk with Meta's AI out loud, in real time. Mark Zuckerberg demoed it live at Connect in September 2026, and it launched in November.</p><p class="links"><a href="https://x.com/HarperSCarroll/status/2102898244582031420" target="_blank" rel="noopener">Connect demo ↗</a><a href="https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/" target="_blank" rel="noopener">TechCrunch ↗</a></p></div></article><article class="card card--side "><a class="media" href="/cutline/" aria-label="Cutline"><video class="site-video" muted loop playsinline preload="metadata" poster="/img/cutline.jpg?v=1" width="2560" height="1440" aria-label="Cutline"><source src="/img/cutline.mp4?v=6" type="video/mp4"></video></a><div class="card__body"><span class="tag tag--side">Side project</span><h3>Cutline</h3><p class="desc">A basketball playbook you can watch come to life. Quiz mode freezes the play and asks what you'd do.</p><p class="links"><a href="/cutline/">Try it ↗</a></p></div></article><article class="card card--side "><a class="media" href="/dance-studio/" aria-label="Dance Studio, revived"><video class="site-video" muted loop playsinline preload="metadata" poster="/img/dance-studio-2026.jpg" width="1200" height="750" aria-label="Dance Studio, revived"><source src="/img/dance-studio-2026.mp4" type="video/mp4"></video></a><div class="card__body"><span class="tag tag--side">Side project</span><h3>Dance Studio, revived</h3><p class="desc">My college thesis, rebuilt six years later: real 3D dancers and formations counted in eights.</p><p class="links"><a href="/dance-studio/">Try it ↗</a><a href="https://github.com/janetcl/dance-studio" target="_blank" rel="noopener">Code ↗</a></p></div></article><article class="card card--side "><a class="media" href="https://chromewebstore.google.com/detail/palette-lens/bgdbebcjjhlhpncgnanidnhjimejaggb" target="_blank" rel="noopener" aria-label="Palette Lens"><img src="/img/palette-lens.jpg?v=4" alt="Palette Lens" loading="lazy"></a><div class="card__body"><span class="tag tag--side">Side project</span><h3>Palette Lens</h3><p class="desc">A Chrome extension that shows you which clothes suit your colors.</p><p class="links"><a href="https://chromewebstore.google.com/detail/palette-lens/bgdbebcjjhlhpncgnanidnhjimejaggb" target="_blank" rel="noopener">Get it for Chrome ↗</a></p></div></article><article class="card card--side "><a class="media" href="https://github.com/alabgroup/translation" target="_blank" rel="noopener" aria-label="Passage"><img src="/img/passage-console.jpg" alt="Passage" loading="lazy"></a><div class="card__body"><span class="tag tag--side">For my church</span><h3>Passage</h3><p class="desc">Live Spanish and Chinese subtitles for Sunday sermons, translated offline. Nothing leaves the laptop.</p><p class="links"><a href="https://github.com/alabgroup/translation" target="_blank" rel="noopener">See the code ↗</a></p></div></article><article class="card card--side "><a class="media" href="/alabaster-site/" aria-label="alabaster.org"><video class="site-video" muted loop playsinline preload="metadata" poster="/img/alabaster.jpg" width="1280" height="800" aria-label="alabaster.org"><source src="/img/alabaster-scroll.mp4" type="video/mp4"></video></a><div class="card__body"><span class="tag tag--side">For my church</span><h3>alabaster.org</h3><p class="desc">The church website, rebuilt off Squarespace. Sermons and livestream links update themselves.</p><p class="links"><a href="/alabaster-site/">See the new site ↗</a></p></div></article></div></div></section>
+<section class="yr" id="y2025"><div class="yr__head"><h2 class="yr__num">2025</h2></div><div class="strip-wrap"><div class="strip strip--solo" tabindex="0" aria-label="2025, scroll sideways for more"><article class="card card--work "><div class="media media--mist media--doodle"><svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Doodle of a phone with a speech bubble"><rect x="44" y="20" width="56" height="104" rx="10"/><path d="M64 110h16"/><path d="M84 36h42a8 8 0 0 1 8 8v20a8 8 0 0 1-8 8h-20l-12 10v-10h-10a8 8 0 0 1-8-8V44a8 8 0 0 1 8-8z" fill="var(--wash)"/><path d="M96 50h26M96 58h18"/></svg></div><div class="card__body"><span class="tag tag--meta">At Meta</span><h3>AI voice &amp; avatar calling</h3><p class="desc">Our team built AI voice and avatar calling for Facebook, Instagram and Messenger, and owned third-party character creation on AI Studio.</p></div></article></div></div></section>
+<section class="yr yr--slim" id="y2024"><div class="yr__head"><h2 class="yr__num">2024</h2><p class="yr__note">joined the Voice &amp; Embodiment team at Meta Superintelligence Labs</p></div></section>
+</div>
+<section class="yr" id="y2023"><div class="yr__head"><h2 class="yr__num">2023</h2></div><div class="strip-wrap"><div class="strip strip--solo" tabindex="0" aria-label="2023, scroll sideways for more"><article class="card card--side "><a class="media media--mist media--app" href="https://apps.apple.com/us/app/alabaster-group/id6446515286" target="_blank" rel="noopener" aria-label="The church app on the App Store"><img src="/img/app-home.jpg" alt="The church app home screen" loading="lazy"><img src="/img/app-welcome.jpg" alt="The church app welcome screen" loading="lazy"></a><div class="card__body"><span class="tag tag--side">For my church</span><h3>The church app</h3><p class="desc">An iOS app in Swift, launched with church volunteers who helped with scope, content, engineering, and testing.</p><p class="links"><a href="https://apps.apple.com/us/app/alabaster-group/id6446515286" target="_blank" rel="noopener">Get it on the App Store ↗</a></p></div></article></div></div></section>
+<section class="yr" id="y2021"><div class="yr__head"><h2 class="yr__num">2021</h2></div><div class="strip-wrap"><div class="strip strip--solo" tabindex="0" aria-label="2021, scroll sideways for more"><article class="card card--work "><div class="media media--mist media--doodle"><svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Doodle of a tall video frame with a play button"><path d="M46 14c-5 0-8 3-8 8v106c0 5 3 8 8 8h58c5 0 8-3 8-8V22c0-5-3-8-8-8z"/><path d="M66 60v30l26-15z"/><path d="M52 112h46"/><path d="M52 112h20" stroke-width="6"/><circle cx="102" cy="40" r="3"/></svg></div><div class="card__body"><span class="tag tag--meta">At Meta</span><h3>Reels on Facebook</h3><p class="meta">Facebook Video · 2021 – 2024</p><p class="desc">Made Reels autoplay in Feed feel smooth (crash, memory and scroll fixes), which grew watch time 3.8%, then brought Reels to the Watch tab.</p><span class="margin">so much Kotlin</span></div></article></div></div></section>
+<section class="yr" id="y2020"><div class="yr__head"><h2 class="yr__num">2020</h2><span class="yr__count">2 things</span><p class="yr__note">graduated from Princeton University in New Jersey</p></div><div class="strip-wrap"><div class="strip" tabindex="0" aria-label="2020, scroll sideways for more"><article class="card card--work "><div class="media media--mist media--doodle"><svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Doodle of a pair of glasses"><path d="M18 70c0-10 6-14 18-14h18c10 0 14 6 14 16 0 14-8 22-24 22-18 0-26-8-26-24z"/><path d="M82 72c0-10 4-16 14-16h18c12 0 18 4 18 14 0 16-8 24-26 24-16 0-24-8-24-22z"/><path d="M68 66c4-4 10-4 14 0"/><path d="M18 66L8 56M132 66l10-10"/></svg></div><div class="card__body"><span class="tag tag--meta">At Meta</span><h3>Facebook on wearables</h3><p class="meta">Reality Labs · 2020 – 2021</p><p class="desc">My first team at Meta: Stories sharing on top secret hardware alongside five partner teams. I wrote our first end-to-end and UI tests.</p></div></article><article class="card card--side "><a class="media" href="/files/Janet_Lee_Senior_Thesis.pdf"  aria-label="Dance Studio thesis"><img src="/img/dance-studio-spiral.jpg" alt="Dance Studio thesis" loading="lazy"></a><div class="card__body"><span class="tag tag--side">College</span><h3>Dance Studio</h3><p class="meta">Princeton senior thesis</p><p class="desc">A 3D tool for blocking dance formations to music, with curved paths so dancers don't collide.</p><p class="links"><a href="/files/Janet_Lee_Senior_Thesis.pdf">Read the thesis (PDF) ↗</a></p></div></article></div></div></section>
+<section class="yr" id="y2019"><div class="yr__head"><h2 class="yr__num">2019</h2></div><div class="strip-wrap"><div class="strip strip--solo" tabindex="0" aria-label="2019, scroll sideways for more"><article class="card card--side "><a class="media" href="/tigermeals/" aria-label="TigerMeals"><video class="site-video" muted loop playsinline preload="metadata" poster="/img/tigermeals.jpg" width="1280" height="800" aria-label="TigerMeals"><source src="/img/tigermeals.mp4" type="video/mp4"></video></a><div class="card__body"><span class="tag tag--side">Founder · college</span><h3>TigerMeals</h3><p class="meta">Princeton COS 333</p><p class="desc">A catering app for Princeton student groups that I tried to turn into a startup. I designed and built the front end.</p><p class="links"><a href="/tigermeals/">See the screens ↗</a></p></div></article></div></div></section>
+<section class="yr yr--slim" id="y2008"><div class="yr__head"><h2 class="yr__num">2008</h2><p class="yr__note">started watching Survivor (Micronesia is still the best season)</p></div></section>
   </div>
 
 <section id="about" class="about wrap">
@@ -211,6 +199,23 @@
     }, { rootMargin: '-25% 0px -65% 0px' });
     document.querySelectorAll('.yr').forEach(function (y) { io.observe(y); });
   })();
+</script>
+<script>
+  // Sideways rows: arrows and a right-edge fade only while there is more to see.
+  document.querySelectorAll('.yr').forEach(function (yr) {
+    var strip = yr.querySelector('.strip'); if (!strip) return;
+    var wrap = strip.parentNode, prev = yr.querySelector('.prev'), next = yr.querySelector('.next');
+    function sync() {
+      var max = strip.scrollWidth - strip.clientWidth - 2;
+      wrap.classList.toggle('more', strip.scrollLeft < max);
+      if (prev) prev.disabled = strip.scrollLeft <= 2;
+      if (next) next.disabled = strip.scrollLeft >= max;
+    }
+    function go(d) { strip.scrollBy({ left: d * strip.clientWidth * 0.8, behavior: 'smooth' }); }
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+    if (next) next.addEventListener('click', function () { go(1); });
+    strip.addEventListener('scroll', sync, { passive: true }); window.addEventListener('resize', sync); sync();
+  });
 </script>
 </body>
 </html>
