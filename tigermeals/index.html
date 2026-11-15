@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TigerMeals screens</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Screens of TigerMeals, a catering app for Princeton student groups built in 2019.">
+<link rel="icon" type="image/png" href="/files/hand-emoji.png">
+<meta name="theme-color" content="#FAFAF7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css?v=30">
+<script>
+  try { var t = localStorage.getItem('jl-theme'); if (t && t !== 'teal') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+  .shots { padding-block: clamp(56px, 8vw, 112px); }
+  .shots .section-title { font-size: clamp(36px, 4.4vw, 60px); }
+  .shots .back { display: inline-block; margin-bottom: 28px; font-weight: 700; }
+  .shots h2 { margin-top: 56px; font-size: 26px; letter-spacing: -0.01em; }
+  .shots .intro { max-width: 40em; margin-top: 10px; }
+  .grid { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 28px 24px;
+          grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); }
+  .grid figure { margin: 0; }
+  .grid a { display: block; }
+  .grid img { width: 100%; height: auto; display: block; border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent); border-radius: 12px; background: var(--white); }
+  .grid figcaption { margin-top: 8px; font-size: 14px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+<main class="shots wrap">
+  <a class="back" href="/">← janetlee.me</a>
+  <h1 class="section-title">TigerMeals</h1>
+  <p class="meta">2019 · Founder · Started in Princeton COS 333 with Vinay Ramesh, Aliyah Taylor and Niranjan Shankar</p>
+  <p class="intro">A catering app for Princeton student groups. Club leaders and RCAs could order party trays from restaurants on Nassau Street, and restaurants could manage their listings and orders. I designed and built the front end.</p>
+  <p class="intro">The original site is gone, so these screens were re-rendered in 2026 from our code, with sample menus.</p>
+
+  <h2>Screens</h2>
+  <ul class="grid">
+    <li><figure><a href="portal.jpg"><img src="portal.jpg" alt="TigerMeals welcome screen: I am a student or a restaurant" width="1280" height="800" loading="lazy"></a><figcaption>Welcome: students and restaurants sign in separately</figcaption></figure></li>
+    <li><figure><a href="meals.jpg"><img src="meals.jpg" alt="Catering packages with filters for restaurant, dietary restrictions and serving size" width="1280" height="800" loading="lazy"></a><figcaption>Catering packages, filtered by restaurant, diet and serving size</figcaption></figure></li>
+    <li><figure><a href="rest.jpg"><img src="rest.jpg" alt="A restaurant page with address, rating, contact details and hours" width="1280" height="800" loading="lazy"></a><figcaption>A restaurant's page</figcaption></figure></li>
+    <li><figure><a href="cart.jpg"><img src="cart.jpg" alt="Cart with two catering packages, a total and delivery details" width="1280" height="800" loading="lazy"></a><figcaption>Cart and delivery details</figcaption></figure></li>
+  </ul>
+
+  <h2>Trying to make it a startup</h2>
+  <p class="intro">A class project wasn't enough for me, so I tried to turn TigerMeals into a real business, aiming to launch in fall 2019. I pitched restaurants on Nassau Street until a few agreed to partner with us, met with student government and the Keller Center about funding and mentorship, and spent the summer rebuilding the site in React for the fall launch.</p>
+  <p class="intro">It didn't take off. A marketplace turned out to be much more than an app: payments the university couldn't hold, restaurants to onboard one by one, and customer service, all while we were full-time students. Still, it was my first time pitching something I built to real customers, and I'd do it again.</p>
+
+  <h2>The plan, from 2019</h2>
+  <ul class="grid">
+    <li><figure><a href="site-map.png"><img src="site-map.png" alt="Site map: customer login flow from browsing restaurants to checkout, and restaurant login flow for managing orders, listings and sales" width="679" height="481" loading="lazy"></a><figcaption>Our site map: the customer side on the left, restaurants on the right</figcaption></figure></li>
+  </ul>
+</main>
+</body>
+</html>
