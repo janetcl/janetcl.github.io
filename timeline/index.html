@@ -19,7 +19,8 @@
 <style>
   /* Timeline: one year per band, newest first. The year sits in a left rail (sticky on desktop); a pinned row of year chips jumps between them. */
   .tl-intro { padding-top: clamp(24px, 4vw, 56px); padding-bottom: clamp(28px, 4vw, 48px); display: grid; gap: 14px; }
-  .tl-intro .hand { font-size: clamp(64px, 9vw, 120px); line-height: .85; color: var(--pen); }
+  .tl-intro .hand { margin: 0; font-weight: 400; font-size: clamp(64px, 9vw, 120px); line-height: .85; color: var(--pen); }
+  .tl-intro mark { white-space: nowrap; }
   .tl-intro p { font-size: clamp(19px, 1.8vw, 24px); line-height: 1.35; max-width: 34em; font-weight: 500; letter-spacing: -0.01em; }
 
   .years { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper, #FAFAF7) 94%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
@@ -80,16 +81,15 @@
 <header class="site-header wrap">
   <a class="wordmark hand" href="/">janet lee</a>
   <nav class="nav" aria-label="Main">
-    <a href="/">Home</a>
-    <a href="/#about">About</a>
+    <a href="#about">About</a>
     <a href="/files/Janet_Lee_Resume.pdf?v=5">Resume</a>
   </nav>
 </header>
 
 <main id="top">
   <section class="tl-intro wrap">
-    <div class="hand">the timeline</div>
-    <p>Everything, newest first: my work at Meta, the things I make after hours for my church and for fun, and where it all started in college.</p>
+    <h1 class="hand">hi! I'm Janet.</h1>
+    <p>I'm a software engineer in New York. At Meta I work on <mark>Muse voice &amp; embodiment</mark>, and after hours, I make things for my church and for fun. Here's all of it, newest first.</p>
   </section>
 
   <nav class="years" aria-label="Jump to a year">
@@ -230,8 +230,26 @@
       <div class="yr__body"><p class="note">started watching Survivor (Micronesia is still the best season)</p></div>
     </section>
 
-    <p class="tl-end"><a href="/">← back to the home page</a></p>
   </div>
+
+<section id="about" class="about wrap">
+  <div class="about__top">
+    <h2 class="section-title">Off the clock</h2>
+    <div class="about__text">
+      <p>I grew up in the Bay Area, went east for computer science at Princeton University in New Jersey (plus certificates in Finance and Spanish), and now New York is home.</p>
+      <p>At my church, Alabaster Group, I'm on the production and tech teams (hence all the church projects above), and I also help lead Bible studies at Christians@MetaNY. Lately I've been thinking a lot about what effective mentorship and discipleship look like.</p>
+      <p>Fun facts: I've been a Survivor superfan since 2008 (Micronesia is the best season, no debate), and my big goal for 2026 is one pull-up. Just one. Wish me luck.</p>
+    </div>
+  </div>
+
+  <ul class="loves" aria-label="Things I love">
+    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="55" cy="56" r="36"/><path d="M19 56h72M55 20v72"/><path d="M30 30c12 12 12 40 0 52M80 30c-12 12-12 40 0 52"/></svg><span class="hand">basketball</span></li>
+    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="16" y="28" width="78" height="28" rx="14" transform="rotate(-20 55 42)"></rect><path d="M34 50l40-14"></path><path d="M24 62c-5 6-9 9-13 10"></path><path d="M6 86c9-7 18-7 27 0s18 7 27 0 18-7 27 0 14-6 17-4"></path><path d="M64 76c8-11 27-13 35-3c5 7 0 15-7 13"></path></svg><span class="hand">boogie<br>boarding</span></li>
+    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M55 44v-6c0-3 2-5 6-6 4-1 7-4 7-8 0-5-4-9-9-9s-9 3-9 8"/><path d="M55 44L14 72c-5 3-3 9 2 9h78c5 0 7-6 2-9z"/></svg><span class="hand">fashion</span></li>
+    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M55 8c-8 10-14 16-14 26 0 8 6 13 14 13s14-5 14-13c0-7-4-10-7-15-1 6-4 8-6 8 1-7 0-12-1-19z"/><path d="M55 30c-3 4-4 6-4 9 0 3 2 5 4 5s4-2 4-5"/><path d="M38 50h34l-5 18H43z"/><path d="M41 56h28M44 62h22M47 50l4 18M55 50v18M63 50l-4 18"/><path d="M52 68l-3 34M58 68l3 34"/></svg><span class="hand">Survivor<br><small>(Micronesia forever)</small></span></li>
+    <li><svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 100c8-6 12-12 16-20" stroke-dasharray="2 7"/><g transform="rotate(-38 58 52)"><path d="M26 52c0-4 3-6 7-6h44c8 0 15 3 17 6-2 3-9 6-17 6H33c-4 0-7-2-7-6z"/><path d="M60 46L46 20h7l20 26M60 58L46 84h7l20-26"/><path d="M33 46l-8-12h5l9 12M33 58l-8 12h5l9-12"/><path d="M84 49.5h5"/></g></svg><span class="hand">travel<br><small>(mainly to Hawaii)</small></span></li>
+  </ul>
+</section>
 </main>
 
 <footer class="site-footer">
