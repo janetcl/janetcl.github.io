@@ -511,3 +511,16 @@ body { transition: background-color 300ms ease-out, color 300ms ease-out; }
 @media (prefers-reduced-motion: reduce) { .clip[open] { animation: none; } }
 @media (max-width: 900px) { .job__pic { width: 120px; } }
 .loves small { display: block; font-size: .62em; line-height: 1.1; opacity: .85; }
+
+/* Phones: keep the hero to about one screen so the work shows sooner */
+.hero__lede mark { white-space: nowrap; }
+.hero__actions { column-gap: 20px; }
+.hero__actions .text-link { padding-inline: 0; }
+@media (max-width: 480px) {
+  .hero { gap: 32px; padding-bottom: 56px; }
+  .hero__title { font-size: 72px; }
+  .hero__lede { margin-top: 20px; font-size: 21px; }
+  .hero__actions { margin-top: 24px; }
+  .polaroid { max-width: 240px; min-width: 0; }
+  .polaroid__note { font-size: 28px; }
+}
